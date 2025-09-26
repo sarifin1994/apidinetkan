@@ -1,0 +1,68 @@
+<!-- Modal Show -->
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal">Edit Mitra</h5>
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group mb-3">
+                    <input type="hidden" id="mitra_id">
+                    <label for="nama_mitra_edit" class="mb-1">Nama Mitra <small class="text-danger">*</small></label>
+                    <input type="text" class="form-control" id="nama_mitra_edit" name="nama_mitra_edit" placeholder=""
+                        autocomplete="off" required>
+                    <small id="helper" class="form-text text-muted">Isi nama mitra, misalnya ACENG</small>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="nomor_wa_edit" class="mb-1">Nomor WA <small class="text-danger">*</small></label>
+                    <input type="number" class="form-control" id="nomor_wa_edit" name="nomor_wa_edit" placeholder=""
+                        autocomplete="off" required>
+                    <small id="helper" class="form-text text-muted">Isi format berikut, contoh 081220313001</small>
+                </div>
+                <hr>
+                <div class="form-group mb-3">
+                    <label for="id_mitra_edit" class="mb-1">ID Mitra <small class="text-danger">*</small></label>
+                    <input type="text" class="form-control" id="id_mitra_edit" name="id_mitra_edit" placeholder=""
+                        autocomplete="off" required disabled>
+                        {{-- <small id="helper" class="form-text text-muted">Isi angka minimal 5 digit, maksimal 10 digit</small> --}}
+
+                </div>
+                <div class="form-group mb-3">
+                    <label for="pass_mitra_edit" class="mb-1">Password Mitra <small class="text-danger">*</small></label>
+                    <input type="password" class="form-control" id="pass_mitra_edit" name="pass_mitra_edit" placeholder="Kosongkan jika tidak ingin merubah password"
+                        autocomplete="off" required >
+                </div>
+                <hr>
+                <div class="form-group mb-3">
+                    <label for="login_edit" class="mb-1">Izin Login Dashboard <small class="text-danger">*</small></label>
+                    <select class="form-select" id="login_edit" name="login_edit" autocomplete="off">
+                        <option value="1">Ya</option>
+                        <option value="0">Tidak</option>
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="user_edit" class="mb-1">Izin Create Pelanggan Baru <small class="text-danger">*</small></label>
+                    <select class="form-select" id="user_edit" name="user_edit" autocomplete="off">
+                    <option value="1">Ya</option>
+                    <option value="0">Tidak</option>
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="billing_edit" class="mb-1">Izin Menu Billing <small class="text-danger">*</small></label>
+                    <select class="form-select" id="billing_edit" name="billing_edit" autocomplete="off">
+                        <option value="1">Ya</option>
+                        <option value="0">Tidak</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link" data-bs-dismiss="modal">Close</button>
+                <button class="btn btn-primary text-white" id="update" type="submit">
+                    Simpan
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

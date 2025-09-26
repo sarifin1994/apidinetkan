@@ -1,0 +1,525 @@
+- var landing_sticky        = true;
+- var wow                   = true;
+- var animate               = true;
+- var scrollreveal          = true;
+- var pages_crollreveal     = true;
+- var owlcarousel           = true;
+- var page_owlcarousel      = true;
+- var landing_font          = true;
+doctype html
+html(lang='en')
+  include ../../components/landing-header
+  body.landing-page
+    include ../../components/taptop
+    // page-wrapper Start
+    div.landing-page
+      // header start
+      header.header-absolute
+        nav.navbar.navbar-expand-lg.bg-light
+          .container-fluid.fluid-space
+            a.navbar-brand.m-0(href='index.html')
+              img(src='../assets/images/landing/logo/header-logo.png' alt='logo')
+            button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
+              span.navbar-toggler-icon
+            #navbarNav.collapse.navbar-collapse
+              ul.navbar-nav.navigation
+                li.nav-item
+                  a.nav-link(href='#home') Home
+                li.nav-item
+                  a.nav-link(href='#demo') Page 
+                li.nav-item
+                  a.nav-link(href='#framework') Frameworks
+                li.nav-item
+                  a.nav-link(href='#features') Feature
+                li.nav-item
+                  a.nav-link(href='https://docs.pixelstrap.net/admin/crocs/document/' target="_blank") Documentation
+                li.nav-item
+                  a.nav-link(href='https://docs.google.com/forms/d/e/1FAIpQLSe6hKUXw_By-pg7yabL0FxoTM02ZPTxoXy8PE3yboRuUCuyeA/viewform' target="_blank") Hire Us
+            a.btn.btn-secondary.btn-landing(href='https://themeforest.net/user/pixelstrap/portfolio' target="_blank") Buy Now
+      // header end
+      //home-section-start
+      section#home.landing-home
+        .container-fluid.fluid-space
+          .title-content
+            .main-title
+              .d-flex.align-items-center.gap-2
+                .flex-shrink-0
+                  img(src='../assets/images/landing/home/Rocket.png' alt='')
+                .flex-grow-1
+                  p.m-0 Kick Start Your Project Using
+            h1 The leading Customer dashboard for your daily workspace
+            p.description-title The incredible and user-friendly HTML was created by combining adaptive, modern, and strong original features.
+            .home-btn.d-flex.gap-3.justify-content-start
+              a.btn.btn-success(href='https://admin.pixelstrap.net/crocs/template/index.html' target='_blank') View Demo
+              a.btn.btn-secondary(href='https://docs.pixelstrap.net/admin/crocs/document/' target="_blank") Documentation
+        .container-fluid.p-0
+          .home-image.text-end.d-md-block.d-none
+            img.demo-img.img-fluid.img-set1(src='../assets/images/landing/home/1.png' alt='')
+            img.demo-img.img-fluid.img-set2(src='../assets/images/landing/home/2.png' alt='')
+            img.demo-img.img-fluid.img-set3(src='../assets/images/landing/home/3.png' alt='')
+            img.demo-img.text-img.img-fluid(src='../assets/images/landing/home/4.png' alt='')
+            img.demo-img.img-fluid.shape-1(src='../assets/images/landing/home/shape-1.png' alt='')
+            img.demo-img.img-fluid.shape-2(src='../assets/images/landing/home/shape-2.png' alt='')
+            img.demo-img.img-fluid.shape-3(src='../assets/images/landing/home/shape-3.png' alt='')
+      //home-section-end
+      // demo section start
+      section#demo.demo-section.section-py-space
+        .container-fluid
+          .title-style.text-center.mt-0
+            h2 Creative Layouts
+            span
+            p We comes up with most creative and useful main general purpose dashboard template
+        .container-fluid.fluid-space
+          .row.demo-block
+            .col-lg-4.col-md-6.bounceIn.wow
+              .demo-box.dashboard-images.light-bg-primary
+                .img-wrapper
+                  a(href="index.html" target='_blank')
+                    img.img-fluid(src="../assets/images/landing/demo/default.jpg" alt="")
+                .layout-name
+                  a.txt-primary(href="https://admin.pixelstrap.net/crocs/template/index.html" target='_blank') Default Dashboard
+            .col-lg-4.col-md-6.bounceIn.wow
+              .demo-box.dashboard-images.light-bg-secondary
+                .img-wrapper
+                  a(href="dashboard-02.html" target='_blank')
+                    img.img-fluid(src="../assets/images/landing/demo/ecommerce.jpg" alt="")
+                .layout-name
+                  a.txt-secondary(href="https://admin.pixelstrap.net/crocs/template/dashboard-02.html" target='_blank') Ecommerce Dashboard
+            .col-lg-4.col-md-6.bounceIn.wow
+              .demo-box.dashboard-images.light-bg-success
+                .img-wrapper
+                  a(href="dashboard-03.html" target='_blank')
+                    img.img-fluid(src="../assets/images/landing/demo/project.jpg" alt="")
+                .layout-name
+                  a.txt-success(href="https://admin.pixelstrap.net/crocs/template/dashboard-03.html" target='_blank') Project Dashboard
+      // demo section end
+      //Framework-start
+      section#framework.framework.section-py-space.light-bg
+        .container-fluid 
+          .title-style.text-center.mt-0
+            h2 Top Frameworks
+            span
+            p Various Editions of the Crocs Admin Template Available in HTML
+        .container
+          .row  
+            .col-sm-12
+              #pills-tabContent.tab-content
+                #pills-home.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='pills-home-tab')
+                  ul.framework-list
+                    li.wow.fadeInDown
+                      .framework-bg
+                        img(src='../assets/images/landing/icon/html/bootstrap.png' alt='')
+                      h4 Bootstrap 5
+                    li.wow.fadeInDown
+                      .framework-bg
+                        img(src='../assets/images/landing/icon/html/css.png' alt='')
+                      h4 CSS 
+                    li.wow.fadeInDown
+                      .framework-bg
+                        img(src='../assets/images/landing/icon/html/sass.png' alt='')
+                      h4 Sass
+                    li.wow.fadeInDown
+                      .framework-bg
+                        img(src='../assets/images/landing/icon/html/pug.png' alt='')
+                      h4 Pug
+                    li.wow.fadeInDown
+                      .framework-bg
+                        img(src='../assets/images/landing/icon/html/npm.png' alt='')
+                      h4 NPM
+                    li.wow.fadeInDown
+                      .framework-bg
+                        img(src='../assets/images/landing/icon/html/charts.png' alt='')
+                      h4 Charts
+                    li.wow.fadeInDown
+                      .framework-bg
+                        img(src='../assets/images/landing/icon/html/gulp.png' alt='')
+                      h4 Gulp
+                    li.wow.fadeInDown
+                      .framework-bg
+                        img(src='../assets/images/landing/icon/html/kit.png' alt='')
+                      h4 Starter Kit
+                    li.wow.fadeInDown
+                      .framework-bg
+                        img(src='../assets/images/landing/icon/html/uikits.png' alt='')
+                      h4 40+ UI Kits
+                    li.wow.fadeInDown
+                      .framework-bg
+                        img(src='../assets/images/landing/icon/html/builders.png' alt='')
+                      h4 Builders
+                    li.wow.fadeInDown
+                      .framework-bg
+                        img(src='../assets/images/landing/icon/html/iconset.png' alt='')
+                      h4 11 Icon Sets
+                    li.wow.fadeInDown
+                      .framework-bg
+                        img(src='../assets/images/landing/icon/html/forms.png' alt='')
+                      h4 Forms
+      //Framework-end
+      //Applications-start
+      section#applications.application-section.section-py-space
+        .container-fluid 
+          .title-style.text-center.mt-0
+            h2 Fast & Powerful Applications
+            span
+            p Crocs admin template provides 3 workable application and designs of other applications.
+        .container-fluid.fluid-space
+          .row.application-block.gy-5
+            .col-lg-4.col-sm-6.wow.pulse
+              .layout-box.light-bg-primary
+                .layout-name
+                  .dot-img
+                    ul.dot-group
+                      li
+                      li
+                      li
+                  a.txt-primary(href='social-app.html' target='_blank') Social App
+                .img-wrapper
+                  a(href='social-app.html' target='_blank')
+                    img.img-fluid(src='../assets/images/landing/application/1.jpg' alt='')
+            .col-lg-4.col-sm-6.wow.pulse
+              .layout-box.light-bg-secondary
+                .layout-name
+                  .dot-img
+                    ul.dot-group
+                      li
+                      li
+                      li
+                  a.txt-secondary(href='knowledgebase.html' target='_blank') Knowledgebase
+                .img-wrapper
+                  a(href='knowledgebase.html' target='_blank')
+                    img.img-fluid(src='../assets/images/landing/application/2.jpg' alt='')
+            .col-lg-4.col-sm-6.wow.pulse
+              .layout-box.light-bg-success
+                .layout-name
+                  .dot-img
+                    ul.dot-group
+                      li
+                      li
+                      li
+                  a.txt-success(href='support-ticket.html' target='_blank') Support Ticket
+                .img-wrapper
+                  a(href='support-ticket.html' target='_blank')
+                    img.img-fluid(src='../assets/images/landing/application/3.jpg' alt='')
+            .col-lg-4.col-sm-6.wow.pulse
+              .layout-box.light-bg-secondary
+                .layout-name
+                  .dot-img
+                    ul.dot-group
+                      li
+                      li
+                      li
+                  a.txt-secondary(href='letter-box.html' target='_blank') Email Dashboard
+                .img-wrapper
+                  a(href='letter-box.html' target='_blank')
+                    img.img-fluid(src='../assets/images/landing/application/4.jpg' alt='')   
+            .col-lg-4.col-sm-6.wow.pulse
+              .layout-box.light-bg-success
+                .layout-name
+                  .dot-img
+                    ul.dot-group
+                      li
+                      li
+                      li
+                  a.txt-success(href='to-do.html' target='_blank') To-Do
+                .img-wrapper
+                  a(href='to-do.html' target='_blank')
+                    img.img-fluid(src='../assets/images/landing/application/5.jpg' alt='')
+            .col-lg-4.col-sm-6.wow.pulse
+              .layout-box.light-bg-primary
+                .layout-name
+                  .dot-img
+                    ul.dot-group
+                      li
+                      li
+                      li
+                  a.txt-primary(href='job-cards-view.html' target='_blank') Job Search
+                .img-wrapper
+                  a(href='job-cards-view.html' target='_blank')
+                    img.img-fluid(src='../assets/images/landing/application/6.jpg' alt='')
+            .col-lg-4.col-sm-6.wow.pulse
+              .layout-box.light-bg-primary
+                .layout-name
+                  .dot-img
+                    ul.dot-group
+                      li
+                      li
+                      li
+                  a.txt-primary(href='product-page.html' target='_blank') Ecommerce
+                .img-wrapper
+                  a(href='product-page.html' target='_blank')
+                    img.img-fluid(src='../assets/images/landing/application/7.jpg' alt='')
+            .col-lg-4.col-sm-6.wow.pulse
+              .layout-box.light-bg-secondary
+                .layout-name
+                  .dot-img
+                    ul.dot-group
+                      li
+                      li
+                      li
+                  a.txt-secondary(href='kanban-board.html' target='_blank') Kanban
+                .img-wrapper
+                  a(href='kanban-board.html' target='_blank')
+                    img.img-fluid(src='../assets/images/landing/application/8.jpg' alt='')
+            .col-lg-4.col-sm-6.wow.pulse
+              .layout-box.light-bg-success
+                .layout-name
+                  .dot-img
+                    ul.dot-group
+                      li
+                      li
+                      li
+                  a.txt-success(href='file-manager.html' target='_blank') File Manager 
+                .img-wrapper
+                  a(href='file-manager.html' target='_blank')
+                    img.img-fluid(src='../assets/images/landing/application/9.jpg' alt='') 
+            .col-lg-4.col-sm-6.wow.pulse
+              .layout-box.light-bg-secondary
+                .layout-name
+                  .dot-img
+                    ul.dot-group
+                      li
+                      li
+                      li
+                  a.txt-secondary(href='project-list.html' target='_blank') Project 
+                .img-wrapper
+                  a(href='project-list.html' target='_blank')
+                    img.img-fluid(src='../assets/images/landing/application/10.jpg' alt='')
+            .col-lg-4.col-sm-6.wow.pulse
+              .layout-box.light-bg-success
+                .layout-name
+                  .dot-img
+                    ul.dot-group
+                      li
+                      li
+                      li
+                  a.txt-success(href='contacts.html' target='_blank') Contacts 
+                .img-wrapper
+                  a(href='contacts.html' target='_blank')
+                    img.img-fluid(src='../assets/images/landing/application/11.jpg' alt='')
+            .col-lg-4.col-sm-6.wow.pulse
+              .layout-box.light-bg-primary
+                .layout-name
+                  .dot-img
+                    ul.dot-group
+                      li
+                      li
+                      li
+                  a.txt-primary(href='private-chat.html' target='_blank') Chat 
+                .img-wrapper
+                  a(href='private-chat.html' target='_blank')
+                    img.img-fluid(src='../assets/images/landing/application/12.jpg' alt='')
+      //Applications end
+      // features-start
+      section#features.features-section.section-py-space.dark-bg
+        .container-fluid 
+          .title-style.text-center.mt-0
+            h2 Usefull Features
+            span
+            p We are using scss 7-1 tire folder structure for this admin template
+        .container-fluid.fluid-space
+          .row.gy-4.gy-md-5.feature-block
+            .col-xxl-3.col-lg-4.col-sm-6.wow.fadeInUp.animated(data-wow-duration='0.05s' style='visibility: visible;-webkit-animation-duration: 0.05s; -moz-animation-duration: 0.05s; animation-duration: 0.05s;')
+              .feature-box
+                .flex-shrink-0
+                  .icon-wrapper
+                    svg
+                      use(href='../assets/svg/icon-sprite.svg#bootstrap')
+                .flex-grow-1
+                  h4 Bootstrap 5
+                  p.mb-0 Cloud ui is built with latest version of bootstrap 5
+            .col-xxl-3.col-lg-4.col-sm-6.wow.fadeInUp.animated(data-wow-duration='0.010s' style='visibility: visible;-webkit-animation-duration: 0.010s; -moz-animation-duration: 0.010s; animation-duration: 0.010s;')
+              .feature-box
+                .flex-shrink-0
+                  .icon-wrapper
+                    svg
+                      use(href='../assets/svg/icon-sprite.svg#coding')
+                .flex-grow-1
+                  h4 Seamless Coding
+                  p.mb-0 Refined templates, W3C code for top quality
+            .col-xxl-3.col-lg-4.col-sm-6.wow.fadeInUp.animated(data-wow-duration='0.015s' style='visibility: visible;-webkit-animation-duration: 0.015s; -moz-animation-duration: 0.015s; animation-duration: 0.015s;')
+              .feature-box
+                .flex-shrink-0
+                  .icon-wrapper
+                    svg
+                      use(href='../assets/svg/icon-sprite.svg#setting-1')
+                .flex-grow-1
+                  h4 Easy to Customize
+                  p.mb-0 Our Template is easy to do any required changes.
+            .col-xxl-3.col-lg-4.col-sm-6.wow.fadeInUp.animated(data-wow-duration='0.020s' style='visibility: visible;-webkit-animation-duration: 0.020s; -moz-animation-duration: 0.020s; animation-duration: 0.020s;')
+              .feature-box
+                .flex-shrink-0
+                  .icon-wrapper
+                    svg
+                      use(href='../assets/svg/icon-sprite.svg#table')
+                .flex-grow-1
+                  h4 Lots of table example
+                  p.mb-0 Many table options for you to choose.
+            .col-xxl-3.col-lg-4.col-sm-6.wow.fadeInUp.animated(data-wow-duration='0.025s' style='visibility: visible;-webkit-animation-duration: 0.025s; -moz-animation-duration: 0.025s; animation-duration: 0.025s;')
+              .feature-box
+                .flex-shrink-0
+                  .icon-wrapper
+                    svg
+                      use(href='../assets/svg/icon-sprite.svg#upload')
+                .flex-grow-1
+                  h4 Multiple file uploads
+                  p.mb-0 option to upload more than one file at one time
+            .col-xxl-3.col-lg-4.col-sm-6.wow.fadeInUp.animated(data-wow-duration='0.030s' style='visibility: visible;-webkit-animation-duration: 0.030s; -moz-animation-duration: 0.030s; animation-duration: 0.030s;')
+              .feature-box
+                .flex-shrink-0
+                  .icon-wrapper
+                    svg
+                      use(href='../assets/svg/icon-sprite.svg#landing-calendar')
+                .flex-grow-1
+                  h4 Calendar design
+                  p.mb-0 Included calendar app with material design.
+            .col-xxl-3.col-lg-4.col-sm-6.wow.fadeInUp.animated(data-wow-duration='0.035s' style='visibility: visible;-webkit-animation-duration: 0.035s; -moz-animation-duration: 0.035s; animation-duration: 0.035s;')
+              .feature-box
+                .flex-shrink-0
+                  .icon-wrapper
+                    svg
+                      use(href='../assets/svg/icon-sprite.svg#photo')
+                .flex-grow-1
+                  h4 Gallery options
+                  p.mb-0 included gallery options for you to showcase products
+            .col-xxl-3.col-lg-4.col-sm-6.wow.fadeInUp.animated(data-wow-duration='0.040s' style='visibility: visible;-webkit-animation-duration: 0.040s; -moz-animation-duration: 0.040s; animation-duration: 0.040s;')
+              .feature-box
+                .flex-shrink-0
+                  .icon-wrapper
+                    svg
+                      use(href='../assets/svg/icon-sprite.svg#editor')
+                .flex-grow-1
+                  h4 Editors
+                  p.mb-0 options to select the editrs that you are comfortable
+            .col-xxl-3.col-lg-4.col-sm-6.wow.fadeInUp.animated(data-wow-duration='0.045s' style='visibility: visible;-webkit-animation-duration: 0.045s; -moz-animation-duration: 0.045s; animation-duration: 0.045s;')
+              .feature-box
+                .flex-shrink-0
+                  .icon-wrapper
+                    svg
+                      use(href='../assets/svg/icon-sprite.svg#slider')
+                .flex-grow-1
+                  h4 Owl carousel
+                  p.mb-0 Responsive jQuery carousel plugin: beautiful motion
+            .col-xxl-3.col-lg-4.col-sm-6.wow.fadeInUp.animated(data-wow-duration='0.050s' style='visibility: visible;-webkit-animation-duration: 0.050s; -moz-animation-duration: 0.050s; animation-duration: 0.050s;')
+              .feature-box
+                .flex-shrink-0
+                  .icon-wrapper
+                    svg
+                      use(href='../assets/svg/icon-sprite.svg#airplay')
+                .flex-grow-1
+                  h4 Fully responsive
+                  p.mb-0 Fully responsive: displays well on any device size.
+            .col-xxl-3.col-lg-4.col-sm-6.wow.fadeInUp.animated(data-wow-duration='0.055s' style='visibility: visible;-webkit-animation-duration: 0.055s; -moz-animation-duration: 0.055s; animation-duration: 0.055s;')
+              .feature-box
+                .flex-shrink-0
+                  .icon-wrapper
+                    svg
+                      use(href='../assets/svg/icon-sprite.svg#drop')
+                .flex-grow-1
+                  h4 3000s of icons
+                  p.mb-0 more than 3000 different icon options
+            .col-xxl-3.col-lg-4.col-sm-6.wow.fadeInUp.animated(data-wow-duration='0.060s' style='visibility: visible;-webkit-animation-duration: 0.060s; -moz-animation-duration: 0.060s; animation-duration: 0.060s;')
+              .feature-box
+                .flex-shrink-0
+                  .icon-wrapper
+                    svg
+                      use(href='../assets/svg/icon-sprite.svg#help-circle')
+                .flex-grow-1
+                  h4 Premium support
+                  p.mb-0 Reliable support for every query, always available.
+            .col-xxl-3.col-lg-4.col-sm-6.wow.fadeInUp.animated(data-wow-duration='0.065s' style='visibility: visible;-webkit-animation-duration: 0.065s; -moz-animation-duration: 0.065s; animation-duration: 0.065s;')
+              .feature-box
+                .flex-shrink-0
+                  .icon-wrapper
+                    svg
+                      use(href='../assets/svg/icon-sprite.svg#trash')
+                .flex-grow-1
+                  h4 Clean design
+                  p.mb-0 Design that is clear and appealing
+            .col-xxl-3.col-lg-4.col-sm-6.wow.fadeInUp.animated(data-wow-duration='0.070s' style='visibility: visible;-webkit-animation-duration: 0.070s; -moz-animation-duration: 0.070s; animation-duration: 0.070s;')
+              .feature-box
+                .flex-shrink-0
+                  .icon-wrapper
+                    svg
+                      use(href='../assets/svg/icon-sprite.svg#aperture')
+                .flex-grow-1
+                  h4 Color templates
+                  p.mb-0 Dark and light templates available
+            .col-xxl-3.col-lg-4.col-sm-6.wow.fadeInUp.animated(data-wow-duration='0.075s' style='visibility: visible;-webkit-animation-duration: 0.075s; -moz-animation-duration: 0.075s; animation-duration: 0.075s;')
+              .feature-box
+                .flex-shrink-0
+                  .icon-wrapper
+                    svg
+                      use(href='../assets/svg/icon-sprite.svg#codepen')
+                .flex-grow-1
+                  h4 data visualization
+                  p.mb-0 Data visualization aids understanding.
+            .col-xxl-3.col-lg-4.col-sm-6.wow.fadeInUp.animated(data-wow-duration='0.080s' style='visibility: visible;-webkit-animation-duration: 0.080s; -moz-animation-duration: 0.080s; animation-duration: 0.080s;')
+              .feature-box
+                .flex-shrink-0
+                  .icon-wrapper
+                    svg
+                      use(href='../assets/svg/icon-sprite.svg#layer')
+                .flex-grow-1
+                  h4 Limitless Components
+                  p.mb-0 Vast layout collection and UI kit library: the largest...
+      // features-end
+      // support-section-start
+      section.section-py-space.support-section
+        .title-style.text-center.mt-0
+          h2 Premium Support
+          span
+          p “fast issue resolution, and dedicated experts for a seamless experience”
+        .container-fluid.fluid-space
+          .row.align-items-center
+            .col-lg-5.wow.bounceInLeft.order-1.order-lg-0
+              .landing-title.text-start
+                h5.sub-title.font-primary.mb-2 Our License
+                h2 we give it as we think that excellent support is needed
+                p.mx-0
+                  | Check our reviews for fast and accurate support to ensure support. we offer premium assistance around-the-clock for any bugs you encounter. and we’ll do best to help you out with any future updates for free.
+                a.btn.btn-primary.f-w-700.support-button(href='https://support.pixelstrap.com/' target='_blank') Support
+            .col-lg-7.support-img.wow.bounceInRight.text-center.text-lg-end
+              img.img-1(src="../assets/images/landing/support.png", alt="")
+              img.img-2(src="../assets/images/landing/arrow-2.png", alt="")
+      // support-section-end
+      // footer-section-start
+      section#footer.landing-footer.section-py-space
+        .triangle
+        ul.shape
+          li.shape1
+            img.img-fluid(src='../assets/images/landing/footer/shape1.png' alt='')
+          li.shape2
+            img.img-fluid(src='../assets/images/landing/footer/shape2.png' alt='')
+          li.shape3
+            img.img-fluid(src='../assets/images/landing/footer/shape3.png' alt='')
+          li.shape4
+            img.img-fluid(src='../assets/images/landing/footer/shape4.png' alt='')
+          li.shape5
+            img.img-fluid(src='../assets/images/landing/footer/shape5.png' alt='')
+          li.shape7
+            img.img-fluid(src='../assets/images/landing/footer/shape1.png' alt='')
+          li.shape8
+            img.img-fluid(src='../assets/images/landing/footer/shape1.png' alt='')
+          li.shape9
+            img.img-fluid(src='../assets/images/landing/footer/shape7.png' alt='')
+          li.shape10
+            img.img-fluid(src='../assets/images/landing/footer/shape7.png' alt='')
+        a.footer-logo(href="index.html" target="_blank")
+          img.img-fluid(src='../assets/images/landing/logo/footer-logo.png' alt='logo')
+        ul.star-rate
+          li
+            i.fa.fa-star.font-warning
+          li
+            i.fa.fa-star.font-warning
+          li
+            i.fa.fa-star.font-warning
+          li
+            i.fa.fa-star.font-warning    
+          li
+            i.fa.fa-star-o.font-warning
+        h2 The Crocs Bootstrap admin theme trusted by many developers world wide.
+        .btn-footer
+          a.btn.btn-lg.btn-primary(target='_blank' href='index.html' data-bs-original-title='' title='') Check Now
+          a.btn.btn-lg.btn-secondary(target='_blank' href='https://themeforest.net/user/pixelstrap/portfolio' data-bs-original-title='' title='') Buy Now
+      // footer-section-end
+    include ../../components/landing-footer-files

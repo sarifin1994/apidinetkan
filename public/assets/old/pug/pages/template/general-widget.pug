@@ -1,0 +1,518 @@
+- var height_equal          = true;
+- var theme_customizer      = true;
+- var date_picker           = true;
+- var apex                  = true;
+- var general_widget        = true;
+- var sidebar               = true;
+- var owlcarousel           = true;
+- var page_owlcarousel      = true;
+- var slick                 = true;
+- var header_slider         = true;
+- var animate               = true;
+- var scrollbar             = true;
+doctype html
+html(lang='en')
+  include ../../components/header-files
+  body
+    include ../../components/loader
+    include ../../components/taptop
+    // page-wrapper Start
+    #pageWrapper.page-wrapper.compact-wrapper
+      include ../../components/header
+      // Page Body Start
+      .page-body-wrapper
+        include ../../components/sidebar
+        .page-body
+          .container-fluid
+            .page-title
+              .row
+                .col-sm-6.ps-0
+                  h3
+                    | General
+                .col-sm-6.pe-0
+                  ol.breadcrumb
+                    li.breadcrumb-item
+                      a(href='index.html')                                        
+                        svg.stroke-icon
+                          use(href='../assets/svg/icon-sprite.svg#stroke-home')
+                    li.breadcrumb-item Widgets
+                    li.breadcrumb-item.active General
+          // Container-fluid starts
+          .container-fluid.general-widget
+            .row
+              .col-xl-2.col-xl-25.col-lg-4.col-md-4.col-sm-6
+                .card.mobile-app
+                  .card-body 
+                    .app-design 
+                      .d-flex 
+                        .flex-shrink-0.bg-light-primary.me-2
+                          svg
+                            use(href='../assets/svg/icon-sprite.svg#mobile-app')
+                        .flex-grow-1 
+                          h6 Mobile App
+                          span joohe.lee@gmail.com
+                    .client-budget      
+                      ul
+                        li 
+                          .d-flex
+                            .flex-shrink-0
+                              .activity-primary
+                            .flex-grow-1 
+                              .d-flex.justify-content-between 
+                                a(href="product.html") 
+                                  h6 Due Date
+                                  span 25-10-2024
+                        li 
+                          .d-flex
+                            .flex-shrink-0
+                              .activity-primary
+                            .flex-grow-1 
+                              .d-flex.justify-content-between 
+                                a(href="product.html") 
+                                  h6 Budget
+                                  span $36,000.00
+                        li  
+                          .d-flex
+                            .flex-grow-1
+                              .d-flex.justify-content-between 
+                                a(href="product.html") 
+                                  h6 Client
+                                  span Joohee Lee
+                    .user-details.customers
+                      ul 
+                        li.d-inline-block
+                          img(src="../assets/images/dashboard-3/user/20.png", alt="user")
+                        li.d-inline-block
+                          img(src="../assets/images/dashboard-3/user/21.png", alt="user")
+                        li.d-inline-block
+                          img(src="../assets/images/dashboard-3/user/22.png", alt="user")
+                      button.btn.btn-secondary Pending
+              .col-xl-2.col-xl-25.col-lg-4.col-md-4.col-sm-6
+                .card.mobile-app
+                  .card-body.banking-web
+                    .app-design 
+                      .d-flex 
+                        .flex-shrink-0.bg-light-secondary.me-2
+                          svg
+                            use(href='../assets/svg/icon-sprite.svg#banking-web')
+                        .flex-grow-1 
+                          h6 Banking Web
+                          span wonkyu@gmail.com
+                    .client-budget      
+                      ul
+                        li 
+                          .d-flex
+                            .flex-shrink-0
+                              .activity-secondary
+                            .flex-grow-1 
+                              .d-flex.justify-content-between 
+                                a(href="product.html") 
+                                  h6 Due Date
+                                  span 12-04-2024
+                        li 
+                          .d-flex
+                            .flex-grow-1 
+                              .d-flex.justify-content-between 
+                                a(href="product.html") 
+                                  h6 Budget
+                                  span $42,500.00
+                        li  
+                          .d-flex
+                            .flex-shrink-0
+                              .activity-secondary
+                            .flex-grow-1
+                              .d-flex.justify-content-between 
+                                a(href="product.html") 
+                                  h6 Client
+                                  span Wonkyu Min
+                    .user-details.customers
+                      ul 
+                        li.d-inline-block
+                          img(src="../assets/images/dashboard-3/user/23.png", alt="user")
+                        li.d-inline-block
+                          img(src="../assets/images/dashboard-3/user/24.png", alt="user")
+                        li.d-inline-block
+                          img(src="../assets/images/dashboard-3/user/25.png", alt="user")
+                      button.btn.btn-success Done
+              .col-xl-2.col-lg-4.col-md-4.col-sm-4.finance
+                .card.mobile-app
+                  .card-body.finance-app
+                    .app-design 
+                      .d-flex 
+                        .flex-shrink-0.bg-light-success.me-2
+                          svg
+                            use(href='../assets/svg/icon-sprite.svg#finance-app')
+                        .flex-grow-1 
+                          h6 Finance App
+                          span yongjae@gmail.com
+                    .client-budget      
+                      ul
+                        li 
+                          .d-flex
+                            .flex-shrink-0
+                              .activity-success
+                            .flex-grow-1 
+                              .d-flex.justify-content-between 
+                                a(href="product.html") 
+                                  h6 Due Date
+                                  span 10-09-2024
+                        li 
+                          .d-flex
+                            .flex-shrink-0
+                              .activity-success
+                            .flex-grow-1 
+                              .d-flex.justify-content-between 
+                                a(href="product.html") 
+                                  h6 Budget
+                                  span $15,600.00
+                        li  
+                          .d-flex
+                            .flex-grow-1
+                              .d-flex.justify-content-between 
+                                a(href="product.html") 
+                                  h6 Client
+                                  span Yongjae Choi
+                    .user-details.customers
+                      ul 
+                        li.d-inline-block
+                          img(src="../assets/images/dashboard-3/user/26.png", alt="user")
+                        li.d-inline-block
+                          img(src="../assets/images/dashboard-3/user/27.png", alt="user")
+                      button.btn.btn-primary Inprogress
+              .col-xl-6.col-lg-8.col-md-8.box-col-6
+                .card.visitors
+                  .card-header.pb-0
+                    .header-top
+                      h5 Daily Visitors
+                      .dropdown.icon-dropdown
+                        button.btn.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+                          i.icon-more-alt
+                        .dropdown-menu.dropdown-menu-end
+                          a.dropdown-item(href='#') Weekly
+                          a.dropdown-item(href='#') Monthly
+                          a.dropdown-item(href='#') Yearly
+                  .card-body.pb-0 
+                    .row 
+                      .col-xl-8.xl-12.col-md-12.box-col-12
+                        #area-line.area-line
+                      .col-xl-4.col-md-4.ecommerce-chart.daily-visitors
+                        .d-flex 
+                          .flex-shrink-0.bg-light-primary.me-3
+                            .deals 
+                              h4 350
+                              span Deals
+                          .flex-shrink-0.bg-light-secondary
+                            .deals 
+                              h4 $31K
+                              span Order Price
+                        .progress-value 
+                          p Visits
+                            span 20,200
+                          .progress.bg-light-primary
+                            .progress-bar.bg-primary(role='progressbar', style='width: 70%', aria-valuenow='10', aria-valuemin='0', aria-valuemax='100')
+                        .progress-value 
+                          p Order Value
+                            span 15,610
+                          .progress.bg-light-secondary
+                            .progress-bar.bg-secondary(role='progressbar', style='width: 70%', aria-valuenow='10', aria-valuemin='0', aria-valuemax='100')
+              .col-xl-2.col-xl-25.col-lg-4.col-md-4.col-sm-6.box-col-3 
+                .card.earning-card
+                  .card-header 
+                    .header-top
+                      h5 Total Earnings
+                      .dropdown.icon-dropdown
+                        button.btn.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+                          i.icon-more-alt
+                        .dropdown-menu.dropdown-menu-end
+                          a.dropdown-item(href='#') Weekly
+                          a.dropdown-item(href='#') Monthly
+                          a.dropdown-item(href='#') Yearly
+                  .card-body.p-0
+                    #Earnings-chart
+                    .d-flex.p-3.pt-0
+                      h2.me-2 $ 12,463
+                      span.bg-light-danger
+                        svg
+                          use(href='../assets/svg/icon-sprite.svg#down-arrow') 
+                      h6.font-danger + 20.08%
+              .col-xl-2.col-lg-4.col-md-6.col-sm-6.expenses-card
+                .card.earning-card
+                  .card-header 
+                    .header-top
+                      h5 Total Expenses
+                      .dropdown.icon-dropdown
+                        button.btn.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+                          i.icon-more-alt
+                        .dropdown-menu.dropdown-menu-end
+                          a.dropdown-item(href='#') Weekly
+                          a.dropdown-item(href='#') Monthly
+                          a.dropdown-item(href='#') Yearly
+                  .card-body.p-0
+                    #Expenses-chart.expenses-chart
+                    .d-flex.p-3.pt-0
+                      h2.me-2 $ 14,852
+                      span.bg-light-success
+                        svg
+                          use(href='../assets/svg/icon-sprite.svg#up-arrow') 
+                      h6.font-success + 60.09%
+              .col-xl-4.col-lg-4.col-md-6.col-sm-6
+                .card.transaction-history
+                  .card-header.pb-0
+                    .header-top
+                      h4 Transaction History
+                      .dropdown.icon-dropdown
+                        button.btn.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+                          i.icon-more-alt
+                        .dropdown-menu.dropdown-menu-end
+                          a.dropdown-item(href='#') Weekly
+                          a.dropdown-item(href='#') Monthly
+                          a.dropdown-item(href='#') Yearly
+                  .card-body 
+                    .table-responsive.custom-scrollbar
+                      table.table.display(style='width:100%')
+                        tbody
+                          tr
+                            td
+                              .d-flex
+                                span.bg-light-primary.history
+                                  svg
+                                    use(href='../assets/svg/icon-sprite.svg#send')
+                                .flex-grow-1.ms-2
+                                  a(href="list-products.html")
+                                    span Receipt from external Wallet
+                                    h5 Mar 21,2024, 4:45pm
+                            td Completed
+                            td + $248.00
+                          tr
+                            td
+                              .d-flex
+                                span.bg-light-secondary.history
+                                  svg
+                                    use(href='../assets/svg/icon-sprite.svg#work')
+                                .flex-grow-1.ms-2
+                                  a(href="list-products.html")
+                                    span Process refund to
+                                    h5 Feb 20,2024, 2:10pm
+                            td Pending
+                            td + $548.00
+                          tr
+                            td
+                              .d-flex
+                                span.bg-light-success.history
+                                  svg
+                                    use(href='../assets/svg/icon-sprite.svg#graph')
+                                .flex-grow-1.ms-2
+                                  a(href="list-products.html")
+                                    span Sending to Citizen
+                                    h5 Jun 17,2024, 12:45pm
+                            td Verified
+                            td + $953.00
+                          tr
+                            td
+                              .d-flex
+                                span.bg-light-danger.history
+                                  svg
+                                    use(href='../assets/svg/icon-sprite.svg#payment-bookmark')
+                                .flex-grow-1.ms-2
+                                  a(href="list-products.html")
+                                    span Payment From #12345
+                                    h5 Oct 30,2024, 1:31pm
+                            td Rejected
+                            td + $349.00
+              .col-xl-4.col-xl-5a.col-lg-4.col-md-12.col-sm-6.box-col-6
+                .card.product-chart
+                  .card-header.pb-0
+                    .header-top
+                      h5 Product Sales
+                      .dropdown.icon-dropdown
+                        button.btn.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+                          i.icon-more-alt
+                        .dropdown-menu.dropdown-menu-end
+                          a.dropdown-item(href='#') Weekly
+                          a.dropdown-item(href='#') Monthly
+                          a.dropdown-item(href='#') Yearly
+                    .d-flex.align-items-center.mt-3
+                      h2.me-2 $12,000
+                      span (15,080 To Goal)
+                  .card-body.p-0
+                    #product-sales
+              .col-xl-4.col-lg-4.col-md-6.col-sm-6
+                .card.total-sales
+                  .card-body
+                    .row
+                      .col-xxl-8.col-xl-12.col-sm-12.col.box-col-12
+                        .d-flex 
+                          span 
+                            svg
+                              use(href='../assets/svg/icon-sprite.svg#Revenue')
+                          .flex-shrink-0 
+                            h4 $73,927
+                            h6 Total Revenue 
+                            .arrow-chart
+                              svg
+                                use(href='../assets/svg/icon-sprite.svg#arrow-chart-up')
+                              h5.font-success +34%
+                      .col-xl-4.col-md-4.col-4.p-0.revenue-card
+                        #earning-chart.earning-chart
+              .col-xl-4.col-lg-4.col-md-6.col-sm-6
+                .card.total-sales
+                  .card-body
+                    .row
+                      .col-xxl-8.col-xl-12.col-sm-12.col.box-col-12
+                        .d-flex.up-sales
+                          span 
+                            svg
+                              use(href='../assets/svg/icon-sprite.svg#Sales')
+                          .flex-shrink-0 
+                            h4 24k USD
+                            h6 Total Sales
+                            .arrow-chart
+                              svg
+                                use(href='../assets/svg/icon-sprite.svg#arrow-chart')
+                              h5.font-danger -14%
+                      .col-xl-4.col-md-4.col-4.p-0.revenue-card
+                        #sales-chart.sales-chart
+              .col-xl-4.col-sm-4.customer-total
+                .card.total-sales
+                  .card-body
+                    .row
+                      .col-xxl-8.col-xl-12.col-sm-12.col.box-col-12
+                        .d-flex.total-customer
+                          span 
+                            svg
+                              use(href='../assets/svg/icon-sprite.svg#Customer')
+                          .flex-shrink-0 
+                            h4 62,828
+                            h6 Total Customer
+                            .arrow-chart
+                              svg
+                                use(href='../assets/svg/icon-sprite.svg#arrow-chart')
+                              h5.font-danger -24%
+                      .col-xl-4.col-md-4.col-4.p-0.revenue-card
+                        #total-customer-chart.customer-chart
+              .col-xl-5.col-lg-6.box-col-6
+                .card
+                  .card-header.pb-0
+                    .header-top
+                      h5 Stock Report
+                      .dropdown.icon-dropdown
+                        button.btn.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+                          i.icon-more-alt
+                        .dropdown-menu.dropdown-menu-end
+                          a.dropdown-item(href='#') Weekly
+                          a.dropdown-item(href='#') Monthly
+                          a.dropdown-item(href='#') Yearly
+                    .stock-report.mt-4
+                      ul 
+                        li
+                          .d-flex 
+                            .flex-shrink-0 
+                              h4 $625,083
+                              svg.ms-1
+                                use(href='../assets/svg/icon-sprite.svg#arrow-chart-up')
+                              h6.font-success +34%
+                          span Sales Account
+                        li  
+                          .d-flex 
+                            .flex-shrink-0 
+                              h4 36,900
+                              svg.ms-1
+                                use(href='../assets/svg/icon-sprite.svg#arrow-chart')
+                              h6.font-danger -14%
+                          span General Leads
+                        li 
+                          .d-flex 
+                            .flex-shrink-0 
+                              h4 4,5%
+                              svg.ms-1
+                                use(href='../assets/svg/icon-sprite.svg#arrow-chart-up')
+                              h6.font-success +30%
+                          span Churn Rate
+                        li 
+                          .d-flex 
+                            .flex-shrink-0 
+                              h4 8,640
+                              svg.ms-1
+                                use(href='../assets/svg/icon-sprite.svg#arrow-chart-up')
+                              h6.font-success +34%
+                          span Returning Uses
+                  .card-body.p-0
+                    #report-chart
+              .col-xl-4.col-lg-6.col-md-6.box-col-6
+                .card
+                  .card-header.pb-0
+                    .header-top
+                      h5 Track Order
+                      .dropdown.icon-dropdown
+                        button.btn.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+                          i.icon-more-alt
+                        .dropdown-menu.dropdown-menu-end
+                          a.dropdown-item(href='#') Weekly
+                          a.dropdown-item(href='#') Monthly
+                          a.dropdown-item(href='#') Yearly
+                  .card-body 
+                    .order-place
+                      .d-flex
+                        .flex-shrink-0
+                          img(src='../assets/images/dashboard-2/product/headphone.png' alt="")
+                        .flex-grow-1 
+                          a(href="product.html") 
+                            h6.f-w-500 Wired Headphones with Mic (Black)
+                            h5.font-primary.f-w-600.mt-1 $27.93
+                    ul.track-order
+                      li 
+                        .d-flex
+                          .flex-shrink-0.bg-primary
+                            img(src='../assets/images/dashboard-2/product/4.png' alt="")
+                          .flex-grow-1 
+                            .d-flex.justify-content-between 
+                              a(href="product.html") 
+                                h6 Order Placed
+                                p.text-truncate We have received Your Order
+                              span.font-primary.f-w-500 Jun20 05:40PM
+                      li 
+                        .d-flex
+                          .flex-shrink-0.bg-secondary
+                            img(src='../assets/images/dashboard-2/product/5.png' alt="")
+                          .flex-grow-1 
+                            .d-flex.justify-content-between 
+                              a(href="product.html") 
+                                h6 Order Packed
+                                p.text-truncate Your Product Packed and ready to shipped
+                              span.font-secondary.f-w-500 Jun20 06:30PM
+                      li  
+                        .d-flex
+                          .flex-shrink-0
+                            img(src='../assets/images/dashboard-2/product/6.png' alt="")
+                          .flex-grow-1 
+                            .d-flex.justify-content-between 
+                              a(href="product.html") 
+                                h6 On the way
+                                p.text-truncate Your Ordeis placed successfully.
+                              span.f-w-600 July 20
+                      li 
+                        .d-flex
+                          .flex-shrink-0
+                            img(src='../assets/images/dashboard-2/product/7.png' alt="")
+                          .flex-grow-1 
+                            .d-flex.justify-content-between 
+                              a(href="product.html") 
+                                h6 Product Deliverd
+                                p.text-truncate Our courier partner will deliver our stuff on July 3, 2024...
+              .col-xl-3.col-lg-12.col-md-6.box-col-12
+                .card
+                  .card-header.pb-0
+                    .header-top
+                      h5 Project Deliveries
+                      .dropdown.icon-dropdown
+                        button.btn.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+                          i.icon-more-alt
+                        .dropdown-menu.dropdown-menu-end
+                          a.dropdown-item(href='#') Weekly
+                          a.dropdown-item(href='#') Monthly
+                          a.dropdown-item(href='#') Yearly
+                  .card-body.p-0
+                    #company-viewchart
+          // Container-fluid Ends
+        include ../../components/footer
+    include ../../components/footer-files
