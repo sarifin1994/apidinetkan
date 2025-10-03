@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\Partnership\Mitra;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,6 +42,30 @@ class AuthController extends Controller
     }
 
     // Login pakai Auth::attempt()
+    // public function login(Request $request)
+    // {
+    //     $credentials = $request->validate([
+    //         'username' => 'required|string',
+    //         'password' => 'required|string',
+    //     ]);
+
+    //     if (!Auth::attempt($credentials)) {
+    //         return response()->json(['message' => 'Username atau password salah'], 401);
+    //     }
+
+    //     $user = Auth::user();
+
+    //     // Buat token Sanctum
+    //     $token = $user->createToken('mobile-token')->plainTextToken;
+
+    //     return response()->json([
+    //         'message' => 'Login berhasil',
+    //         'user' => $user,
+    //         'token' => $token,
+    //         'token_type' => 'Bearer'
+    //     ]);
+    // }
+
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -48,22 +73,49 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
 
-        if (!Auth::attempt($credentials)) {
-            return response()->json(['message' => 'Username atau password salah'], 401);
+        // 🔹 Coba login sebagai User biasa
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            $token = $user->createToken('mobile-token')->plainTextToken;
+
+            return response()->json([
+                'message' => 'Login berhasil (User)',
+                'user'    => $user,
+                'tipe'    => $user->is_dinetkan == 1 ? 'kemitraan' : 'pppoe',
+                'token'   => $token,
+                'token_type' => 'Bearer'
+            ]);
         }
 
-        $user = Auth::user();
+        // 🔹 Coba login sebagai Mitra
+        $mitra = Mitra::where('id_mitra', $credentials['username'])->first();
+        if ($mitra && Hash::check($credentials['password'], $mitra->password)) {
+            if ($mitra->login == 0) {
+                return response()->json([
+                    'message' => 'Akun anda tidak diizinkan login'
+                ], 403);
+            }
 
-        // Buat token Sanctum
-        $token = $user->createToken('mobile-token')->plainTextToken;
+            Auth::guard('mitra')->login($mitra);
 
+            // Kalau juga mau kasih Sanctum token ke mitra
+            $token = $mitra->createToken('mitra-token')->plainTextToken;
+
+            return response()->json([
+                'message' => 'Login berhasil (Mitra)',
+                'user'   => $mitra,
+                'tipe'   => 'sales',
+                'token'   => $token,
+                'token_type' => 'Bearer'
+            ]);
+        }
+
+        // Kalau dua-duanya gagal
         return response()->json([
-            'message' => 'Login berhasil',
-            'user' => $user,
-            'token' => $token,
-            'token_type' => 'Bearer'
-        ]);
+            'message' => 'Username atau password salah'
+        ], 401);
     }
+
 
     // Logout -> hapus token aktif
     public function logout(Request $request)

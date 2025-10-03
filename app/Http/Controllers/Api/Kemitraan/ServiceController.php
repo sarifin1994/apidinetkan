@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Kemitraan;
 
 
 use App\Http\Controllers\Controller;
@@ -58,8 +58,8 @@ class ServiceController extends Controller
     }
 
 
-    function detail_service($id){
-        $service_id = $id;
+    function detail_service(Request $request){
+        $service_id = $request->service_id;
         $vlan = get_vlan_mikrotik();
         cacti_logout();
         cacti_login();
