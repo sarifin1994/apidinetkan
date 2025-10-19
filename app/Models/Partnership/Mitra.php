@@ -5,10 +5,11 @@ namespace App\Models\Partnership;
 // use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
 
 class Mitra extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, HasApiTokens;
     protected $connection = 'mysql';
     protected $table = 'partnership_mitra';
     protected $fillable = [

@@ -27,33 +27,79 @@ class ServiceController extends Controller
 {
     public function active(Request $request)
     {
-        $user = UserDinetkan::where('dinetkan_user_id',$request->user()->dinetkan_user_id)->first();
-        $mapping =  MappingUserLicense::where('status', ServiceStatusEnum::ACTIVE)->where('dinetkan_user_id', $user->dinetkan_user_id)->with('user')->with('service')->get();
+        $user = UserDinetkan::where('dinetkan_user_id', $request->user()->dinetkan_user_id)->first();
+
+        $perPage = $request->get('per_page', 10); // default 10 item per halaman
+
+        $query = MappingUserLicense::where('status', ServiceStatusEnum::ACTIVE)
+            ->where('dinetkan_user_id', $user->dinetkan_user_id)
+            ->with(['user', 'service']);
+
+        if ($request->filled('service')) {
+            $query->whereHas('service', function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->service . '%');
+            });
+        }
+        $mapping = $query->orderBy('due_date', 'DESC')->paginate($perPage);
         return response()->json($mapping);
     }
 
+
     public function inactive(Request $request)
     {
-        $user = UserDinetkan::where('dinetkan_user_id',$request->user()->dinetkan_user_id)->first();
-        $mapping =  MappingUserLicense::where('status', ServiceStatusEnum::INACTIVE)->where('dinetkan_user_id', $user->dinetkan_user_id)->with('user')->with('service')->get();
+        $user = UserDinetkan::where('dinetkan_user_id', $request->user()->dinetkan_user_id)->first();
 
+        $perPage = $request->get('per_page', 10); // default 10 item per halaman
+
+        $query = MappingUserLicense::where('status', ServiceStatusEnum::INACTIVE)
+            ->where('dinetkan_user_id', $user->dinetkan_user_id)
+            ->with(['user', 'service']);
+
+        if ($request->filled('service')) {
+            $query->whereHas('service', function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->service . '%');
+            });
+        }
+        $mapping = $query->orderBy('due_date', 'DESC')->paginate($perPage);
         return response()->json($mapping);
     }
 
     public function suspend(Request $request)
     {
-        $user = UserDinetkan::where('dinetkan_user_id',$request->user()->dinetkan_user_id)->first();
-        $mapping =  MappingUserLicense::where('status', ServiceStatusEnum::SUSPEND)->where('dinetkan_user_id', $user->dinetkan_user_id)->with('user')->with('service')->get();
+        $user = UserDinetkan::where('dinetkan_user_id', $request->user()->dinetkan_user_id)->first();
 
+        $perPage = $request->get('per_page', 10); // default 10 item per halaman
+
+        $query = MappingUserLicense::where('status', ServiceStatusEnum::SUSPEND)
+            ->where('dinetkan_user_id', $user->dinetkan_user_id)
+            ->with(['user', 'service']);
+
+        if ($request->filled('service')) {
+            $query->whereHas('service', function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->service . '%');
+            });
+        }
+        $mapping = $query->orderBy('due_date', 'DESC')->paginate($perPage);
         return response()->json($mapping);
     }
 
 
     public function overdue(Request $request)
     {
-        $user = UserDinetkan::where('dinetkan_user_id',$request->user()->dinetkan_user_id)->first();
-        $mapping =  MappingUserLicense::where('status', ServiceStatusEnum::OVERDUE)->where('dinetkan_user_id', $user->dinetkan_user_id)->with('user')->with('service')->get();
+        $user = UserDinetkan::where('dinetkan_user_id', $request->user()->dinetkan_user_id)->first();
 
+        $perPage = $request->get('per_page', 10); // default 10 item per halaman
+
+        $query = MappingUserLicense::where('status', ServiceStatusEnum::OVERDUE)
+            ->where('dinetkan_user_id', $user->dinetkan_user_id)
+            ->with(['user', 'service']);
+
+        if ($request->filled('service')) {
+            $query->whereHas('service', function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->service . '%');
+            });
+        }
+        $mapping = $query->orderBy('due_date', 'DESC')->paginate($perPage);
         return response()->json($mapping);
     }
 

@@ -28,9 +28,6 @@ if (! function_exists('multi_auth')) {
         if (Auth::guard('mitra')->check()) {
             return Auth::guard('mitra')->user();
         }
-        if (Auth::guard('admin_dinetkan')->check()) {
-            return Auth::guard('admin_dinetkan')->user();
-        }
         return null;
     }
 }

@@ -18,6 +18,7 @@ class Balancehistory extends Model
         'notes',
         'type',
         'tx_date',
-        'is_widraw'
+        'is_widraw',
+        'last_balance'
     ];
 }

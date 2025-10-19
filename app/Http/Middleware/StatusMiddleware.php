@@ -34,12 +34,6 @@ class StatusMiddleware
                 $allowed = true;
             }
         }
-        if (Auth::guard('admin_dinetkan')->check()) {
-            $admin = Auth::guard('admin_dinetkan')->user();
-            if (in_array($admin->status, $statuses)) {
-                $allowed = true;
-            }
-        }
 
         if ($allowed) {
             return $next($request);

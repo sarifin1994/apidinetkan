@@ -49,21 +49,6 @@ class RoleMiddleware
             }
         }
 
-        // Cek jika guard "mitra" telah terautentikasi
-        if (Auth::guard('admin_dinetkan')->check()) {
-            $admin = Auth::guard('admin_dinetkan')->user();
-            if (in_array($admin->role, $roles)) {
-                $allowed = true;
-            }
-        }
-
-        if (Auth::guard('admin_dinetkan')->check()) {
-            $admin = Auth::guard('admin_dinetkan')->user();
-            if (in_array($admin->ext_role, $roles)) {
-                $allowed = true;
-            }
-        }
-
         if ($allowed) {
             return $next($request);
         }

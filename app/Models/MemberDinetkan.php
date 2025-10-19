@@ -38,4 +38,28 @@ class MemberDinetkan extends Model
         'product_bhp',
         'product_uso',
     ];
+
+    public function service(){
+        return $this->belongsTo(ProductDInetkan::class,'product_dinetkan_id', 'id');
+    }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class,'province_id','id');
+    }
+
+    public function regency()
+    {
+        return $this->belongsTo(Regencies::class,'regency_id','id');
+    }
+
+    public function district()
+    {
+        return $this->belongsTo(Districts::class,'district_id','id');
+    }
+
+    public function village()
+    {
+        return $this->belongsTo(Villages::class,'village_id','id');
+    }
 }

@@ -13,10 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'multi_auth' => \App\Http\Middleware\MultiAuthMiddleware::class,
-            'role' => \App\Http\Middleware\RoleMiddleware::class,
-            'status' => \App\Http\Middleware\StatusMiddleware::class,
-            'check.api.key.ext' => \App\Http\Middleware\CheckApiKeyExt::class,
+            'auth' => \App\Http\Middleware\Authenticate::class,
         ]);
 
         $middleware->validateCsrfTokens(except: [    
