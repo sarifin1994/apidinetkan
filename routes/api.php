@@ -12,6 +12,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout-all', [\App\Http\Controllers\Api\AuthController::class, 'logoutAll']);
 
     Route::group(['as' => 'kemitraan.', 'prefix' => 'kemitraan/'], function () {
+
+        // dashboard
+        Route::group(['as' => 'dashboard.', 'prefix' => 'dashboard'], function () {
+            Route::get('/',[\App\Http\Controllers\Api\Kemitraan\DashboardController::class, 'index']);
+        });
         // account
         Route::group(['as' => 'account.', 'prefix' => 'account'], function () {
             Route::get('/info', [\App\Http\Controllers\Api\Kemitraan\AccountInfoController::class, 'info']);
@@ -90,6 +95,12 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::middleware('auth:mitra')->group(function () {
     Route::group(['as' => 'sales.', 'prefix' => 'sales/'], function () {
+
+        // dashboard
+        Route::group(['as' => 'dashboard.', 'prefix' => 'dashboard'], function () {
+            Route::get('/',[\App\Http\Controllers\Api\Sales\DashboardController::class, 'index']);
+        });
+
         Route::group(['as' => 'widrawal.', 'prefix' => 'widrawal'], function () {
             Route::get('/', [\App\Http\Controllers\Api\Sales\WidrawalController::class, 'index']);
             Route::post('/check_account', [\App\Http\Controllers\Api\Sales\WidrawalController::class, 'inq_account']);
