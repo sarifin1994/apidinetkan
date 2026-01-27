@@ -29,60 +29,66 @@ class MrtgController extends Controller
         $new_services = [];
         if($services){
             foreach ($services as $s){
+                $active_graph = "";
+                $graph_mikrotik = [];
+                $graph_cacti = [];
+                $graph_libre = [];
+
+                // cacti
                 if($s->service_detail->graph_type == 'cacti'){
-                    $graph = UserDinetkanGraph::query()
-                        ->where('dinetkan_user_id', $request->user()->dinetkan_user_id)
-                        ->where('service_id', $s->service_id)
-                        ->get();
-                    $new_graph = [];
-                    if($graph){
-                        foreach ($graph as $g){
-                            $new_graph[]=[
-                                'data' => $g,
-                                'link' => array(
-                                    'daily' => '/api/kemitraan/mrtg/daily_graph_json/'.$g->id,
-                                    'weekly' => '/api/kemitraan/mrtg/weekly_graph_json/'.$g->id,
-                                    'monthly' => '/api/kemitraan/mrtg/monthly_graph_json/'.$g->id,
-                                )
-                            ];
-                        }
-                    }
-                    $new_services[] = array(
-                        'id' => $s->id,
-                        'service_id' => $s->service_id,
-                        'service_name' => $s->service->name,
-                        'graph' => $new_graph
-                    );
+                    $active_graph = 'cacti';
                 }
+                $graph = UserDinetkanGraph::query()
+                    ->where('dinetkan_user_id', $request->user()->dinetkan_user_id)
+                    ->where('service_id', $s->service_id)
+                    ->get();
+                if($graph){
+                    foreach ($graph as $g){
+                        $graph_cacti[]=[
+                            'data' => $g,
+                            'link' => array(
+                                'daily' => '/api/kemitraan/mrtg/daily_graph_json/'.$g->id,
+                                'weekly' => '/api/kemitraan/mrtg/weekly_graph_json/'.$g->id,
+                                'monthly' => '/api/kemitraan/mrtg/monthly_graph_json/'.$g->id,
+                            )
+                        ];
+                    }
+                }
+
+                // mikrotik
                 if($s->service_detail->graph_type == 'mikrotik'){
-                    $new_services[] = array(
-                        'id' => $s->id,
-                        'service_id' => $s->service_id,
-                        'service_name' => $s->service->name,
-                        'link' => array(
-                            'daily' => '/api/kemitraan/mrtg/graph_json_mikrotik_daily/'.$s->service_id,
-                            'weekly' => '/api/kemitraan/mrtg/graph_json_mikrotik_weekly/'.$s->service_id,
-                            'monthly' => '/api/kemitraan/mrtg/graph_json_mikrotik_monthly/'.$s->service_id,
-                        )
-                    );
+                    $active_graph = 'mikrotik';
                 }
+                $graph_mikrotik[] = array(
+                    'link' => array(
+                        'daily' => '/api/kemitraan/mrtg/graph_json_mikrotik_daily/'.$s->service_id,
+                        'weekly' => '/api/kemitraan/mrtg/graph_json_mikrotik_weekly/'.$s->service_id,
+                        'monthly' => '/api/kemitraan/mrtg/graph_json_mikrotik_monthly/'.$s->service_id,
+                    )
+                );
+
+                // libre
                 if($s->service_detail->graph_type == 'libre'){
-                    $libre = [];
-                    if($s->service_libre){
-                        foreach ($s->service_libre as $l){
-                            $libre[] = array(
-                                'data' => $l,
-                                'link' => '/api/kemitraan/mrtg/get_ifname_image/'.$l->hostname.'/'.rawurlencode($l->ifName)
-                            );
-                        }
-                    }
-                    $new_services[] = array(
-                        'id' => $s->id,
-                        'service_id' => $s->service_id,
-                        'service_name' => $s->service->name,
-                        'libre' => $libre
-                    );
+                    $active_graph = 'libre';
                 }
+                if($s->service_libre){
+                    foreach ($s->service_libre as $l){
+                        $graph_libre[] = array(
+                            'data' => $l,
+                            'link' => '/api/kemitraan/mrtg/get_ifname_image/'.$l->hostname.'/'.rawurlencode($l->ifName)
+                        );
+                    }
+                }
+
+                $new_services[] = array(
+                    'id' => $s->id,
+                    'service_id' => $s->service_id,
+                    'service_name' => $s->service->name,
+                    'active_graph' => $active_graph,
+                    'mikrotik' => $graph_mikrotik,
+                    'cacti' => $graph_cacti,
+                    'libre' =>$graph_libre
+                );
             }
         }
         return response()->json($new_services);
@@ -271,7 +277,6 @@ class MrtgController extends Controller
             $apiUrl = env('CACTI_ENDPOINT').'cacti/graph_xport/'.$_id.'?' . urldecode(http_build_query($params)) ;
             // Kirim POST request ke API eksternal
             $response = Http::get($apiUrl);
-            Storage::disk('local')->append('cek_mrtg_summary.txt', json_encode($response->json(), JSON_PRETTY_PRINT). "\n\n");
             // Periksa apakah request berhasil
             if ($response->successful()) {
                 $data = $response->json();
@@ -321,7 +326,6 @@ class MrtgController extends Controller
             $apiUrl = env('CACTI_ENDPOINT').'cacti/graph_json/'.$_id.'?' . urldecode(http_build_query($params)) ;
             // Kirim POST request ke API eksternal
             $response = Http::get($apiUrl);
-            Storage::disk('local')->append('cek_mrtg_.txt', json_encode($response->json(), JSON_PRETTY_PRINT). "\n\n");
             // Periksa apakah request berhasil
             if ($response->successful()) {
                 $data = $response->json();
