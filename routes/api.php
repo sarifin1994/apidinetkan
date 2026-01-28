@@ -1,7 +1,5 @@
 <?php
 
-
-use App\Http\Controllers\Mikrotik\NasController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [\App\Http\Controllers\Api\AuthController::class, 'register']);
@@ -98,7 +96,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('geo/regencies/{province_id}', [\App\Http\Controllers\Api\GeoMasterController::class, 'regencies']);
     Route::get('geo/districts/{regency_id}', [\App\Http\Controllers\Api\GeoMasterController::class, 'districts']);
     Route::get('geo/villages/{district_id}', [\App\Http\Controllers\Api\GeoMasterController::class, 'villages']);
-    Route::post('ping-check', [NasController::class, 'checkPing']);
+
+
+    Route::post('ping-check', [\App\Http\Controllers\Api\NasController::class, 'checkPing']);
+    Route::resource('log', \App\Http\Controllers\Api\ActivityLogController::class);
 });
 
 Route::middleware('auth:mitra')->group(function () {
