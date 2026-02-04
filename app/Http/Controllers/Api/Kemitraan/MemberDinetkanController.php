@@ -260,6 +260,7 @@ class MemberDinetkanController
             'total' => $total,
             'bank_name' => $billing->bank_name,
             'virtual_account' => $billing->virtual_account,
+            'qrString' => $billing->qrString,
             'status' => $billing->status,
             'detail' => [
                 [
