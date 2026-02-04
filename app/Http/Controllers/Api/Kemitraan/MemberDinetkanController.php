@@ -465,7 +465,8 @@ class MemberDinetkanController
                 $billingservice->update($data_update);
             }
             return [
-                'vaNumber' => $response['vaNumber'],
+                'vaNumber' => isset($response['vaNumber']) ?? null,
+                'qrString' => isset($response['qrString']) ?? null,
                 'bank_name' => $request->bank_name
             ];
         }
