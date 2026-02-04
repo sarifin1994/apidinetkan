@@ -26,6 +26,7 @@ class BillingService extends Model
         'virtual_account',
         'bank',
         'reference',
-        'bank_name'
+        'bank_name',
+        'qrString'
     ];
 }

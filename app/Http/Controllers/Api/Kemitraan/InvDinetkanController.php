@@ -252,6 +252,11 @@ class InvDinetkanController extends Controller
             $paymentNames = $filteredVA->pluck('paymentName', 'paymentMethod');
 
             // Tampilkan
+            $paymentMethod[] = [
+                'payment_method' => "SP",
+                'bank_name' => "QRIS",
+                'panduan' => get_panduan("SP")
+            ];
             foreach ($paymentNames as $key => $val) {
                 $paymentMethod[] = [
                     'payment_method' => $key,

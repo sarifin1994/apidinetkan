@@ -687,7 +687,31 @@ function get_panduan($kode){
                 "Masukkan nomor VA > Send.",
                 "Konfirmasi dan bayar."
             ]
-        ]
+        ],
+        'SP' => [
+            "Via Mobile Banking" => [
+                "Login ke aplikasi Mobile Banking.",
+                "Pilih menu QRIS / Scan QR.",
+                "Scan kode QR yang ditampilkan.",
+                "Periksa detail pembayaran.",
+                "Masukkan PIN dan konfirmasi pembayaran."
+            ],
+            "Via E-Wallet" => [
+                "Buka aplikasi E-Wallet (OVO, DANA, GoPay, ShopeePay, dll).",
+                "Pilih menu Scan / Bayar.",
+                "Scan kode QRIS.",
+                "Pastikan nominal dan merchant sudah benar.",
+                "Konfirmasi dan selesaikan pembayaran."
+            ],
+            "Via Aplikasi Bank Lain" => [
+                "Login ke aplikasi perbankan.",
+                "Pilih menu QRIS / Pembayaran QR.",
+                "Scan kode QRIS.",
+                "Cek detail transaksi.",
+                "Masukkan PIN dan bayar."
+            ]
+        ],
+
     ];
     if(isset($panduan[$kode])){
         return $panduan[$kode];

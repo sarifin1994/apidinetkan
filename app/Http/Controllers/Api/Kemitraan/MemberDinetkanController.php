@@ -446,13 +446,22 @@ class MemberDinetkanController
 
         $response = makeRequest($url, "POST", $params);
         if(isset($response['statusCode'])){
-            if($response['statusCode'] == '00' && $response['vaNumber'] != ''){
-                $data_update=[
-                    'virtual_account' => $response['vaNumber'],
-                    'bank' => $request->payment_method,
-                    'bank_name' => $request->bank_name,
-                    'reference' => $response['reference']
-                ];
+            if($response['statusCode'] == '00' && (isset($response['vaNumber']) != '' || isset($response['qrString']))){
+                if($response['qrString']){
+                    $data_update=[
+                        'qrString' => $response['qrString'],
+                        'bank' => $request->payment_method,
+                        'bank_name' => $request->bank_name,
+                        'reference' => $response['reference']
+                    ];
+                }else{
+                    $data_update=[
+                        'virtual_account' => $response['vaNumber'],
+                        'bank' => $request->payment_method,
+                        'bank_name' => $request->bank_name,
+                        'reference' => $response['reference']
+                    ];
+                }
                 $billingservice->update($data_update);
             }
             return [
