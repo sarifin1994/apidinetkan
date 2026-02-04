@@ -100,6 +100,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('ping-check', [\App\Http\Controllers\Api\NasController::class, 'checkPing']);
     Route::resource('log', \App\Http\Controllers\Api\ActivityLogController::class);
+
+    Route::group(['as' => 'blog.', 'prefix' => 'blog/'], function () {
+        Route::get('/list', [\App\Http\Controllers\Api\BlogController::class, 'index']);
+        Route::get('/show/{slug}', [\App\Http\Controllers\Api\BlogController::class, 'show']);
+    });
 });
 
 Route::middleware('auth:mitra')->group(function () {
