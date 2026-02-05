@@ -448,7 +448,7 @@ class MemberDinetkanController
         $response = makeRequest($url, "POST", $params);
         if(isset($response['statusCode'])){
             if($response['statusCode'] == '00' && (isset($response['vaNumber']) != '' || isset($response['qrString']))){
-                if($response['qrString']){
+                if(isset($response['qrString'])){
                     $data_update=[
                         'qrString' => $response['qrString'],
                         'bank' => $request->payment_method,
