@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::group(['as' => 'blog.', 'prefix' => 'blog/'], function () {
+    Route::get('/list', [\App\Http\Controllers\Api\BlogController::class, 'index']);
+    Route::get('/show/{slug}', [\App\Http\Controllers\Api\BlogController::class, 'show']);
+});
 Route::post('/register', [\App\Http\Controllers\Api\AuthController::class, 'register']);
 Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->get('/check-token', function (\Illuminate\Http\Request $request) {
@@ -101,10 +105,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('ping-check', [\App\Http\Controllers\Api\NasController::class, 'checkPing']);
     Route::resource('log', \App\Http\Controllers\Api\ActivityLogController::class);
 
-    Route::group(['as' => 'blog.', 'prefix' => 'blog/'], function () {
-        Route::get('/list', [\App\Http\Controllers\Api\BlogController::class, 'index']);
-        Route::get('/show/{slug}', [\App\Http\Controllers\Api\BlogController::class, 'show']);
-    });
 });
 
 Route::middleware('auth:mitra')->group(function () {
