@@ -9,7 +9,7 @@ class BlogPost extends Model
 {
     protected $fillable = [
         'category_id','title','slug','excerpt',
-        'content','thumbnail','status','hashtags'
+        'content','thumbnail','status','hashtags','thumbnail_url'
     ];
 
     public function category(){
