@@ -25,7 +25,7 @@ class DeployController extends Controller
     public function check(){
         return response()->json([
             'status' => 'ok',
-            'message' => 'Test OK LAGI...'
+            'message' => 'Test OK LAGI..'
         ]);
     }
 }
