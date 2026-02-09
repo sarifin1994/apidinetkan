@@ -1,55 +1,7 @@
 <?php
 
 use App\Http\Controllers\Kemitraan\KemitraanUsersController;
-use App\Models\Keuangan\KategoriKeuangan;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Mapping\AreaController;
-use App\Http\Controllers\Mapping\OdpController;
-use App\Http\Controllers\Partnership\MitraController;
-use App\Http\Controllers\Partnership\ResellerController;
-use App\Http\Controllers\Pppoe\PppoeUserController;
-use App\Http\Controllers\Pppoe\PppoeProfileController;
-use App\Http\Controllers\Hotspot\HotspotUserController;
-use App\Http\Controllers\Hotspot\HotspotProfileController;
-use App\Http\Controllers\Mikrotik\VpnController;
-use App\Http\Controllers\Mikrotik\NasController;
-use App\Http\Controllers\Setting\CompanyController;
-use App\Http\Controllers\Setting\IsolirController;
-use App\Http\Controllers\Setting\BillingSettingController;
-use App\Http\Controllers\Setting\MidtransController;
-use App\Http\Controllers\Setting\AccountController;
-use App\Http\Controllers\Whatsapp\MpwaController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\Keuangan\KategoriKeuanganController;
-use App\Http\Controllers\Keuangan\TransaksiController;
-use App\Http\Controllers\Keuangan\TransaksiMidtransController;
-use App\Http\Controllers\Keuangan\TransaksiDuitkuController;
-use App\Http\Controllers\Keuangan\TransaksiMitraController;
-use App\Http\Controllers\Invoice\UnpaidController;
-use App\Http\Controllers\Invoice\PaidController;
-use App\Http\Controllers\Invoice\PrintController;
-use App\Http\Controllers\Olt\OltController;
-use App\Http\Controllers\Olt\ZteController;
-use App\Http\Controllers\Olt\HsgqController;
-use App\Http\Controllers\Olt\HiosoController;
-use App\Http\Controllers\LicenseController;
-use App\Http\Controllers\ActivityLogController;
-use App\Http\Controllers\ManualController;
-use App\Http\Controllers\Tiket\TiketGangguanController;
-use App\Http\Controllers\RadiusLogController;
-use App\Http\Controllers\Setting\VpnServerController;
-use App\Http\Controllers\Setting\WaServerController;
-use App\Http\Controllers\Setting\RoleController;
-use App\Http\Controllers\Setting\PaymentController;
-use App\Http\Controllers\Setting\DuitkuController;
-use App\Http\Controllers\Keuangan\TransaksiOwnerController;
-use App\Http\Controllers\Keuangan\TransaksiHotspotController;
-use App\Http\Controllers\MapController;
-
 // Activity Log & Log Viewer
-Route::resource('log', ActivityLogController::class)->middleware(['multi_auth:web', 'role:Admin', 'status:1']);
+//Route::resource('log', ActivityLogController::class)->middleware(['multi_auth:web', 'role:Admin', 'status:1']);
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 // ->middleware(['multi_auth:admin_dinetkan,web', 'role:Owner,Admin']);

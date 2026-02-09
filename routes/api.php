@@ -81,8 +81,8 @@ Route::middleware('auth:sanctum')->group(function () {
                 Route::put('/update', [\App\Http\Controllers\Api\Kemitraan\MemberDinetkanController::class, 'update']);
                 Route::post('/single_delete/{id}', [\App\Http\Controllers\Api\Kemitraan\MemberDinetkanController::class, 'single_delete']);
                 Route::post('/store', [\App\Http\Controllers\Api\Kemitraan\MemberDinetkanController::class, 'store']);
-                Route::get('/report/unpaid', [\App\Http\Controllers\Admin\Billing\MemberDinetkanController::class, 'unpiad']);
-                Route::get('/unpaid', [\App\Http\Controllers\Admin\Billing\MemberDinetkanController::class, 'piad']);
+//                Route::get('/report/unpaid', [\App\Http\Controllers\Admin\Billing\MemberDinetkanController::class, 'unpiad']);
+//                Route::get('/unpaid', [\App\Http\Controllers\Admin\Billing\MemberDinetkanController::class, 'piad']);
             });
 
             Route::group(['as' => 'report.', 'prefix' => '/report'], function (){
@@ -96,6 +96,17 @@ Route::middleware('auth:sanctum')->group(function () {
 
     });
 
+    Route::group(['as' => 'ticket.', 'prefix' => 'ticket/'], function () {
+        Route::get('/', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'list_ticket']);
+        Route::get('list_service', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'listService']);
+        Route::post('create_ticket', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'create_ticket']);
+        Route::get('show/{id}', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'show']);
+        Route::post('reply/{id}', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'reply']);
+        Route::post('close/{id}', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'close']);
+        Route::get('list_priority', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'list_priority']);
+        Route::get('list_department', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'list_department']);
+    });
+
     Route::get('geo/provinces', [\App\Http\Controllers\Api\GeoMasterController::class, 'province']);
     Route::get('geo/regencies/{province_id}', [\App\Http\Controllers\Api\GeoMasterController::class, 'regencies']);
     Route::get('geo/districts/{regency_id}', [\App\Http\Controllers\Api\GeoMasterController::class, 'districts']);
@@ -103,7 +114,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
     Route::post('ping-check', [\App\Http\Controllers\Api\NasController::class, 'checkPing']);
-    Route::resource('log', \App\Http\Controllers\Api\ActivityLogController::class);
+    Route::get('log', [\App\Http\Controllers\Api\ActivityLogController::class, 'index']);
 
 });
 
