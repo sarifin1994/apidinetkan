@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DeployController;
 
 Route::group(['as' => 'blog.', 'prefix' => 'blog/'], function () {
     Route::get('/list', [\App\Http\Controllers\Api\BlogController::class, 'index']);
@@ -14,6 +15,10 @@ Route::middleware('auth:sanctum')->get('/check-token', function (\Illuminate\Htt
         'user'   => $request->user()
     ]);
 });
+
+
+Route::post('/deploy', [DeployController::class, 'deploy']);
+
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', [\App\Http\Controllers\Api\AuthController::class, 'me']);
