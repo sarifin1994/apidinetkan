@@ -10,9 +10,15 @@ class DeployController extends Controller
     public function deploy(Request $request)
     {
         Log::info($request->all());
-//        if ($request->header('X-Deploy-Token') !== env('DEPLOY_TOKEN')) {
-//            abort(403, 'Unauthorized');
-//        }
+        $signature = $request->header('X-Hub-Signature-256');
+        $payload   = $request->getContent();
+        $secret    = env('DEPLOY_TOKEN');
+
+        $hash = 'sha256=' . hash_hmac('sha256', $payload, $secret);
+
+        if (!hash_equals($hash, $signature)) {
+            abort(403, 'Invalid signature');
+        }
 
         \exec('/www/wwwroot/api-dev.dinetkan.com/deploy.sh');
 

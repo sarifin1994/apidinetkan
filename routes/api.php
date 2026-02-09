@@ -18,7 +18,6 @@ Route::middleware('auth:sanctum')->get('/check-token', function (\Illuminate\Htt
 
 
 Route::post('/deploy', [DeployController::class, 'deploy']);
-Route::post('/deploy/check', [DeployController::class, 'check']);
 
 
 Route::middleware('auth:sanctum')->group(function () {
