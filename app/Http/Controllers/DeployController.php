@@ -19,4 +19,11 @@ class DeployController extends Controller
             'message' => 'Auto deploy success'
         ]);
     }
+
+    public function check(){
+        return response()->json([
+            'status' => 'ok',
+            'message' => 'Test OK'
+        ]);
+    }
 }
