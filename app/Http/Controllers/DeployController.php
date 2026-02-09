@@ -14,7 +14,7 @@ class DeployController extends Controller
 //            abort(403, 'Unauthorized');
 //        }
 
-        exec('/www/wwwroot/api-dev.dinetkan.com/deploy.sh');
+        \exec('/www/wwwroot/api-dev.dinetkan.com/deploy.sh');
 
         return response()->json([
             'status' => 'ok',
@@ -25,7 +25,7 @@ class DeployController extends Controller
     public function check(){
         return response()->json([
             'status' => 'ok',
-            'message' => 'Test OK LAGI'
+            'message' => 'Test OK LAGI.'
         ]);
     }
 }
