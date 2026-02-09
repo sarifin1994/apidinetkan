@@ -9,7 +9,7 @@ class DeployController extends Controller
 {
     public function deploy(Request $request)
     {
-        Log::info($request->header());
+        Log::info($request->all());
 //        if ($request->header('X-Deploy-Token') !== env('DEPLOY_TOKEN')) {
 //            abort(403, 'Unauthorized');
 //        }
