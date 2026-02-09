@@ -15,11 +15,11 @@ Route::middleware('auth:sanctum')->get('/check-token', function (\Illuminate\Htt
         'user'   => $request->user()
     ]);
 });
-
-
-Route::post('/deploy', [DeployController::class, 'deploy']);
-Route::get('/deploy/check', [DeployController::class, 'check']);
-
+//
+//
+//Route::post('/deploy', [DeployController::class, 'deploy']);
+//Route::get('/deploy/check', [DeployController::class, 'check']);
+//
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', [\App\Http\Controllers\Api\AuthController::class, 'me']);
