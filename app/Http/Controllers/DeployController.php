@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class DeployController extends Controller
 {
     public function deploy(Request $request)
     {
-        if ($request->header('X-Deploy-Token') !== env('DEPLOY_TOKEN')) {
-            abort(403, 'Unauthorized');
-        }
+        Log::info($request->header());
+//        if ($request->header('X-Deploy-Token') !== env('DEPLOY_TOKEN')) {
+//            abort(403, 'Unauthorized');
+//        }
 
         exec('/www/wwwroot/api-dev.dinetkan.com/deploy.sh');
 
