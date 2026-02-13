@@ -47,7 +47,7 @@ class TicketController extends Controller
 
     private function generateTicketNumber()
     {
-        $prefix = date('Ym'); // YYYYMM
+        $prefix = 'DN-2';//date('Ym'); // YYYYMM
 
         $last = Ticket::where('ticket_number','like',$prefix.'%')
             ->orderBy('ticket_number','desc')
