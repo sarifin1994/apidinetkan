@@ -24,11 +24,23 @@ class TicketController extends Controller
     }
     public function listService(Request $request)
     {
-        $services = MappingUserLicense::query()
-            ->join('license_dinetkan','license_dinetkan.id','=','mapping_user_license.license_id')
-            ->where('mapping_user_license.dinetkan_user_id', $request->user()->dinetkan_user_id)
-            ->select('license_dinetkan.id','license_dinetkan.name','mapping_user_license.service_id')
-            ->get();
+//        $services = MappingUserLicense::query()
+//            ->join('license_dinetkan','license_dinetkan.id','=','mapping_user_license.license_id')
+//            ->where('mapping_user_license.dinetkan_user_id', $request->user()->dinetkan_user_id)
+//            ->select('license_dinetkan.id','license_dinetkan.name','mapping_user_license.service_id')
+//            ->get();
+
+        $servicesraw = MappingUserLicense::query()
+            ->with(['service','service_detail'])
+            ->where('dinetkan_user_id',$request->user()->dinetkan_user_id)->get();
+        $services = $servicesraw->map(function ($s){
+            $adds = " - ".$s->service_detail?->full_address ?? '';
+            return array(
+                'id' => $s->service->id,
+                'name' => $s->service->name.$adds,
+                'service_id' => $s->service_id
+            );
+        });
 
         return response()->json($services);
     }
@@ -61,7 +73,7 @@ class TicketController extends Controller
             'priority'=>'required',
             'message'=>'required',
             'attachments'   => 'nullable|array',
-            'attachments.*' => 'file|mimes:jpg,jpeg,png,pdf|max:30720',
+            'attachments.*' => 'file|mimes:jpg,jpeg,png|max:30720',
 
         ]);
         DB::beginTransaction();
@@ -137,7 +149,7 @@ class TicketController extends Controller
         }
         return response()->json($ticket);
     }
-    
+
     public function reply(Request $request, $id)
     {
         $request->validate([

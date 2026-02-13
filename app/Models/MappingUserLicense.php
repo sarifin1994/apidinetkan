@@ -27,6 +27,7 @@ class MappingUserLicense extends Model
         'id_mitra',
         'service_id',
         'notes',
+        'komisi_cycle'
 
     ];
 
@@ -62,5 +63,15 @@ class MappingUserLicense extends Model
     public function graph()
     {
         return $this->belongsTo(UserDinetkanGraph::class, 'service_id', 'service_id');
+    }
+
+    public function license()
+    {
+        return $this->belongsTo(LicenseDinetkan::class, 'license_id', 'id');
+    }
+
+    public function license_dedicated()
+    {
+        return $this->belongsTo(LicenseDinetkan::class, 'license_id', 'id')->where('category_id',1);
     }
 }

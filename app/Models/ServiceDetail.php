@@ -51,4 +51,53 @@ class ServiceDetail extends Model
     {
         return $this->belongsTo(MappingUserLicense::class, 'service_id', 'service_id');
     }
+
+    public function pop()
+    {
+        return $this->belongsTo(MasterPop::class, 'pop_id', 'id');
+    }
+
+    public function metro()
+    {
+        return $this->belongsTo(MasterMetro::class, 'metro_id', 'id');
+    }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class,'province_id','id');
+    }
+
+    public function regency()
+    {
+        return $this->belongsTo(Regencies::class,'regency_id','id');
+    }
+
+    public function district()
+    {
+        return $this->belongsTo(Districts::class,'district_id','id');
+    }
+
+    public function village()
+    {
+        return $this->belongsTo(Villages::class,'village_id','id');
+    }
+
+    public function service_active()
+    {
+        return $this->belongsTo(MappingUserLicense::class, 'service_id', 'service_id')->where('status',1);
+    }
+
+    public function getFullAddressAttribute(): string
+    {
+        $parts = array_filter([
+            trim((string) $this->address),
+            trim((string) ($this->village?->name)),
+            trim((string) ($this->district?->name)),
+            trim((string) ($this->regency?->name)),
+            trim((string) ($this->province?->name)),
+        ], fn ($value) => $value !== '');
+
+        return $parts ? implode(', ', $parts) : '';
+    }
+
 }
