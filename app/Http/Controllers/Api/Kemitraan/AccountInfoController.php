@@ -24,6 +24,7 @@ class AccountInfoController extends Controller
     public function list_document(Request $request){
         $user = $request->user();
         $listDoc = UserDoc::with('docType')->where('user_id', $user->id)->get();
+//        https://dev.radiusqu.com/api/show_file/26
         return response()->json($listDoc);
     }
 

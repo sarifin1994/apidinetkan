@@ -36,5 +36,6 @@ return [
     ],
     'radius' => [
         'url' => env('RADIUS_URL'),
+        'api_key_ext' => env('API_KEY_EXT'),
     ],
 ];

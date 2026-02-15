@@ -106,11 +106,14 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'list_ticket']);
         Route::get('list_service', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'listService']);
         Route::post('create_ticket', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'create_ticket']);
+        Route::post('store_mitra', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'store_mitra']);
         Route::get('show/{id}', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'show']);
+        Route::get('show_new/{id}', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'show_new']);
         Route::post('reply/{id}', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'reply']);
         Route::post('close/{id}', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'close']);
         Route::get('list_priority', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'list_priority']);
         Route::get('list_department', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'list_department']);
+        Route::get('jenis_gangguan', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'jenis_gangguan']);
     });
 
     Route::get('geo/provinces', [\App\Http\Controllers\Api\GeoMasterController::class, 'province']);

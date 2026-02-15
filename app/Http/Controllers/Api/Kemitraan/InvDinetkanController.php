@@ -253,7 +253,7 @@ class InvDinetkanController extends Controller
 
             // Tampilkan
             $paymentMethod[] = [
-                'payment_method' => "SP",
+                'payment_method' => "SQ",
                 'bank_name' => "QRIS",
                 'panduan' => get_panduan("SP")
             ];
