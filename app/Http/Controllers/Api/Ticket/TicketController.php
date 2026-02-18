@@ -35,6 +35,12 @@ class TicketController extends Controller
         $tickets = $query->orderBy('created_at', 'desc')->paginate($perPage);
         return response()->json($tickets);
     }
+    public function list_ticket_mitra(Request $request){
+        $perPage = $request->get('per_page', 10); // default 10 item per halaman
+        $query = TiketGangguan::where('shortname_created', $request->user()->shortname);
+        $tickets = $query->orderBy('created_at', 'desc')->paginate($perPage);
+        return response()->json($tickets);
+    }
     private function generateTicketNumber()
     {
         $prefix = 'DN-2';//date('Ym'); // YYYYMM

@@ -106,6 +106,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::group(['as' => 'ticket.', 'prefix' => 'ticket/'], function () {
         Route::get('/', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'list_ticket']);
+        Route::get('/list_ticket_mitra', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'list_ticket_mitra']);
         Route::get('list_service', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'listService']);
         Route::post('create_ticket', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'create_ticket']);
         Route::post('store_mitra', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'store_mitra']);
