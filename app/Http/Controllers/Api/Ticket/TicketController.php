@@ -314,7 +314,7 @@ class TicketController extends Controller
             $gangguan = MasterJenisGangguan::find($request->jenis_gangguan);
             $metro = 0;
             if(isset($serviceDetail->metro_id)){
-                $metro    = MasterMetro::query()->where($serviceDetail->metro_id)->first();
+                $metro    = MasterMetro::query()->where('id',$serviceDetail->metro_id)->first();
             }
             if($metro == 0){
                 return response()->json([
