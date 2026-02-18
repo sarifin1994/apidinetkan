@@ -316,7 +316,7 @@ class TicketController extends Controller
             if(isset($serviceDetail->metro_id)){
                 $metro    = MasterMetro::query()->where('id',$serviceDetail->metro_id)->first();
             }
-            if($metro == 0){
+            if($metro == null){
                 return response()->json([
                     'success' => "Silahkan hubungi admin ada data belum lengkap"
                 ], 500);
