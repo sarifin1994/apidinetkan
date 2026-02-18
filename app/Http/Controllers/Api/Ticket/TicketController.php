@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Api\Ticket;
 
 
+use function Adminer\where;
 use App\Http\Controllers\Controller;
 use App\Library\WaNdiing;
 use App\Models\MappingUserLicense;
@@ -313,7 +314,7 @@ class TicketController extends Controller
             $gangguan = MasterJenisGangguan::find($request->jenis_gangguan);
             $metro = 0;
             if(isset($serviceDetail->metro_id)){
-                $metro    = MasterMetro::find($serviceDetail->metro_id);
+                $metro    = MasterMetro::query->where($serviceDetail->metro_id)->first();
             }
             if($metro == 0){
                 return response()->json([
