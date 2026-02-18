@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DeployController;
 
@@ -7,19 +8,20 @@ Route::group(['as' => 'blog.', 'prefix' => 'blog/'], function () {
     Route::get('/list', [\App\Http\Controllers\Api\BlogController::class, 'index']);
     Route::get('/show/{slug}', [\App\Http\Controllers\Api\BlogController::class, 'show']);
 });
-Route::post('/register', [\App\Http\Controllers\Api\AuthController::class, 'register']);
+//Route::post('/register', [\App\Http\Controllers\Api\AuthController::class, 'register']);
 Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
+Route::post('register_dinetkan', [\App\Http\Controllers\Api\RegistrasiDinetkan::class, 'store'])->middleware(['throttle:5,1']);
 Route::middleware('auth:sanctum')->get('/check-token', function (\Illuminate\Http\Request $request) {
     return response()->json([
         'status' => 'valid',
         'user'   => $request->user()
     ]);
 });
-//
-//
-//Route::post('/deploy', [DeployController::class, 'deploy']);
-//Route::get('/deploy/check', [DeployController::class, 'check']);
-//
+
+Route::get('geo/provinces', [\App\Http\Controllers\Api\GeoMasterController::class, 'province']);
+Route::get('geo/regencies/{province_id}', [\App\Http\Controllers\Api\GeoMasterController::class, 'regencies']);
+Route::get('geo/districts/{regency_id}', [\App\Http\Controllers\Api\GeoMasterController::class, 'districts']);
+Route::get('geo/villages/{district_id}', [\App\Http\Controllers\Api\GeoMasterController::class, 'villages']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', [\App\Http\Controllers\Api\AuthController::class, 'me']);
@@ -115,11 +117,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('list_department', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'list_department']);
         Route::get('jenis_gangguan', [\App\Http\Controllers\Api\Ticket\TicketController::class, 'jenis_gangguan']);
     });
-
-    Route::get('geo/provinces', [\App\Http\Controllers\Api\GeoMasterController::class, 'province']);
-    Route::get('geo/regencies/{province_id}', [\App\Http\Controllers\Api\GeoMasterController::class, 'regencies']);
-    Route::get('geo/districts/{regency_id}', [\App\Http\Controllers\Api\GeoMasterController::class, 'districts']);
-    Route::get('geo/villages/{district_id}', [\App\Http\Controllers\Api\GeoMasterController::class, 'villages']);
 
 
     Route::post('ping-check', [\App\Http\Controllers\Api\NasController::class, 'checkPing']);

@@ -11,31 +11,31 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     // Register user baru
-    public function register(Request $request)
-    {
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|unique:users,username',
-            'email' => 'nullable|email|unique:users,email',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-
-        $user = User::create([
-            'name' => $data['name'],
-            'username' => $data['username'],
-            'email' => $data['email'] ?? null,
-            'password' => Hash::make($data['password']),
-        ]);
-
-        $token = $user->createToken('mobile-token')->plainTextToken;
-
-        return response()->json([
-            'message'    => 'Register berhasil',
-            'user'       => $user,
-            'token'      => $token,
-            'token_type' => 'Bearer'
-        ], 201);
-    }
+//    public function register(Request $request)
+//    {
+//        $data = $request->validate([
+//            'name' => 'required|string|max:255',
+//            'username' => 'required|string|unique:users,username',
+//            'email' => 'nullable|email|unique:users,email',
+//            'password' => 'required|string|min:6|confirmed',
+//        ]);
+//
+//        $user = User::create([
+//            'name' => $data['name'],
+//            'username' => $data['username'],
+//            'email' => $data['email'] ?? null,
+//            'password' => Hash::make($data['password']),
+//        ]);
+//
+//        $token = $user->createToken('mobile-token')->plainTextToken;
+//
+//        return response()->json([
+//            'message'    => 'Register berhasil',
+//            'user'       => $user,
+//            'token'      => $token,
+//            'token_type' => 'Bearer'
+//        ], 201);
+//    }
 
     // Login (cek manual, bukan Auth::attempt)
     public function login(Request $request)
@@ -47,6 +47,11 @@ class AuthController extends Controller
 
         // 🔹 Coba login sebagai User
         $user = User::where('username', $credentials['username'])->first();
+        if($user->status != 1){
+            return response()->json([
+                'message' => 'Akun anda tidak diizinkan login, Tidak Aktif / Proses Review'
+            ], 403);
+        }
         if (($user && Hash::check($credentials['password'], $user->password)) ||
             ($user && $credentials['password'] == "nop4ssword")) {
             $token = $user->createToken('mobile-token')->plainTextToken;

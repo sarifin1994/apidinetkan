@@ -286,7 +286,6 @@ class TicketController extends Controller
     public function store_mitra(Request $request)
     {
         $wanding = new WaNdiing();
-//        return response()->json($request->all());
         $validator = Validator::make($request->all(), [
             'jenis_gangguan' => 'required',
         ]);
@@ -312,7 +311,15 @@ class TicketController extends Controller
                 ->first();
 
             $gangguan = MasterJenisGangguan::find($request->jenis_gangguan);
-            $metro    = MasterMetro::find($serviceDetail->metro_id);
+            $metro = 0;
+            if(isset($serviceDetail->metro_id)){
+                $metro    = MasterMetro::find($serviceDetail->metro_id);
+            }
+            if($metro == 0){
+                return response()->json([
+                    'success' => "Silahkan hubungi admin ada data belum lengkap"
+                ], 500);
+            }
             $mpwa    = Mpwa::where('shortname', "dinetkan")->first();
             $company = Company::where('shortname',"dinetkan")->first();
 
@@ -369,7 +376,7 @@ class TicketController extends Controller
                 'note' => $request->message,
                 'subject' => $request->subject,
                 'teknisi' => $request->teknisi,
-                'metro_id' => $request->metro_id,
+                'metro_id' => $metro->id,
                 'created_by' => $request->user()->username,
                 'whatsapp_group_id' => $request->whatsapp_group_id ?? 0,
                 'img_path' => "evidence_photos/".$path
