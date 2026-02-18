@@ -270,9 +270,9 @@ class TicketController extends Controller
 
     public function list_priority(){
         $list = array(
-            'low' => "LOW",
-            'medium' => "medium",
-            'high' => "high"
+            'rendah' => "Rendah",
+            'normal' => "Normal",
+            'tinggi' => "Tinggi"
         );
         return response()->json([
             'data' => $list,
