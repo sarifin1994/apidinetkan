@@ -75,7 +75,8 @@ class UserDinetkan extends Model
         'dinetkan_license_id',
         'id_mitra_sales',
         'created_by',
-        'create_at_by','update_at_by'
+        'create_at_by','update_at_by',
+        'request_license_id'
     ];
 
 //    protected $casts = [

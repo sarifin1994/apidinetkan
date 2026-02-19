@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DeployController;
-
 Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
-Route::post('register_dinetkan', [\App\Http\Controllers\Api\RegistrasiDinetkan::class, 'store']);
+Route::post('/register_dinetkan', [\App\Http\Controllers\Api\RegistrasiDinetkan::class, 'store']);
+Route::get('/list_licensi', [\App\Http\Controllers\Api\RegistrasiDinetkan::class, 'list_licensi']);
+
 
 Route::get('geo/provinces', [\App\Http\Controllers\Api\GeoMasterController::class, 'province']);
 Route::get('geo/regencies/{province_id}', [\App\Http\Controllers\Api\GeoMasterController::class, 'regencies']);

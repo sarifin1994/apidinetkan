@@ -54,7 +54,10 @@ class User extends Authenticatable
         'p_id',
         'is_import',
         'id_mitra',
-        'id_mitra_sales'
+        'id_mitra_sales',
+        'request_license_id',
+        'id_card',
+        'npwp'
     ];
 
     /**

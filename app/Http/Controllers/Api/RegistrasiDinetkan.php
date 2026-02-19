@@ -7,12 +7,13 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\CountNumbering;
+use App\Models\LicenseDinetkan;
 use App\Models\User;
+use App\Models\UserDinetkan;
 use App\Models\WatemplateDinetkan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class RegistrasiDinetkan extends Controller
@@ -23,14 +24,16 @@ class RegistrasiDinetkan extends Controller
             if (gantiformat_hp($user->whatsapp) == gantiformat_hp(trim($request->whatsapp))) {
                 return response()->json(['message' => 'Data Whatsapp sudah ada'], 500);
             }
-            if ($user->email == trim($request->email)) {
+            if (strtolower($user->email) == strtolower(trim($request->email))) {
+                return response()->json(['message' => 'Data Email sudah ada'], 500);
+            }
+            if (strtolower($user->username) == strtolower(trim($request->email))) {
                 return response()->json(['message' => 'Data Email sudah ada'], 500);
             }
         }
         DB::beginTransaction();
         try{
-            $user = User::create([
-//            'id_group' => User::max('id_group') + 1,
+            $user = UserDinetkan::create([
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'shortname' => Str::trim($request->first_name).Str::trim($request->last_name),
@@ -39,7 +42,6 @@ class RegistrasiDinetkan extends Controller
                 'email' => $request->email,
                 'whatsapp' => $request->whatsapp,
                 'username' => $request->email,
-//            'password' => Hash::make($data['password']),
                 'id_card' => $request->id_card,
                 'npwp' => $request->npwp,
                 'latitude' => $request->latitude,
@@ -63,6 +65,7 @@ class RegistrasiDinetkan extends Controller
                 'next_due' => '9999-12-31', //null,
                 'dinetkan_user_id' => $this->generateMemberId(),
                 'is_dinetkan' => 1,
+                'request_license_id' => $request->request_license_id
             ]);
             WatemplateDinetkan::create([
                 'dinetkan_user_id' => $user->dinetkan_user_id,
@@ -122,5 +125,16 @@ class RegistrasiDinetkan extends Controller
         $lastMember->save();
         $userid = $prefix . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
         return $userid;
+    }
+
+    public function list_licensi(Request $request){
+        $license = LicenseDinetkan::query()->get();
+        $license = $license->map(function($e){
+            return [
+                'id' => $e->id,
+                'name' => $e->name
+            ];
+        });
+        return response()->json($license);
     }
 }
