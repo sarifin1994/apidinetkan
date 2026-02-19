@@ -129,6 +129,21 @@ class ServiceController extends Controller
         $docType = DocType::all();
         $listDoc = UserDoc::with('docType')->where('service_id', $service_id)->get();
 
+        $radiusUrl = config('services.radius.url');
+        $api_key_ext = config('services.radius.api_key_ext');
+        $listDoc = $listDoc->map(function($e) use($radiusUrl){
+           return [
+               "id" => $e->id,
+            "doc_id" => $e->doc_id,
+            "user_id" => $e->user_id,
+            "file_name" => $e->file_name,
+            "file_ext" => $e->file_ext,
+            "path" => $radiusUrl."/api/service/show_file/$e->id",
+            "service_id" => $e->service_id,
+            "doc_type" => $e->docType
+           ];
+        });
+
         $provinces = Province::query()
             ->orderBy('name', 'asc')
             ->get();

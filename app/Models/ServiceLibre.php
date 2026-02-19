@@ -15,6 +15,7 @@ class ServiceLibre extends Model
         'vlan_name',
         'vlan_id',
         'hostname',
-        'ifName'
+        'ifName',
+        'libre_graph_name'
     ];
 }
