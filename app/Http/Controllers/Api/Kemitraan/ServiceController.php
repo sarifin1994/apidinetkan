@@ -179,4 +179,15 @@ class ServiceController extends Controller
                     'edited' => $edited));
             ;
     }
+
+    public function list_ip(Request $requet){
+        $mapping = MappingUserLicense::where('dinetkan_user_id', $requet->user()->dinetkan_user_id)->with('service_detail')->get();
+        $mapping = $mapping->map(function ($e){
+            return [
+                'service_id' => $e->service_id,
+                'ip_prefix' => $e->service_detail->ip_prefix ?? ''
+            ];
+        });
+        return response()->json($mapping);
+    }
 }

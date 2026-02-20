@@ -49,6 +49,7 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('/suspend', [\App\Http\Controllers\Api\Kemitraan\ServiceController::class, 'suspend']);
             Route::get('/overdue', [\App\Http\Controllers\Api\Kemitraan\ServiceController::class, 'overdue']);
             Route::get('/detail_service', [\App\Http\Controllers\Api\Kemitraan\ServiceController::class, 'detail_service']);
+            Route::get('/list_ip', [\App\Http\Controllers\Api\Kemitraan\ServiceController::class, 'list_ip']);
         });
 
         // inv
