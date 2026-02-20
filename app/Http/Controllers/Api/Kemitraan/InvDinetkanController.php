@@ -197,7 +197,10 @@ class InvDinetkanController extends Controller
                     'status_desc' => $status_desc,
                     'payment_url' => "",
                     'service_id' => $mapping ? $mapping->service_id : 0,
-                    'mappingadon' => $mappingadon
+                    'mappingadon' => $mappingadon,
+                    'virtual_account' => $inv->virtual_account,
+                    'bank' => $inv->bank,
+                    'bank_name' => $inv->bank_name
                 ];
                 $response = [
                     'fullname' => $user->name,
