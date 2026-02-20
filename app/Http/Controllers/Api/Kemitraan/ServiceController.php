@@ -181,11 +181,12 @@ class ServiceController extends Controller
     }
 
     public function list_ip(Request $requet){
-        $mapping = MappingUserLicense::where('dinetkan_user_id', $requet->user()->dinetkan_user_id)->with('service_detail')->get();
+        $mapping = MappingUserLicense::where('dinetkan_user_id', $requet->user()->dinetkan_user_id)->with('service_detail','service')->get();
         $mapping = $mapping->map(function ($e){
             return [
                 'service_id' => $e->service_id,
-                'ip_prefix' => $e->service_detail->ip_prefix ?? ''
+                'ip_prefix' => $e->service_detail->ip_prefix ?? '',
+                'service' => $e->service->name ?? ''
             ];
         });
         return response()->json($mapping);
