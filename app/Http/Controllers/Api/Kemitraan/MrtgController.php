@@ -97,8 +97,8 @@ class MrtgController extends Controller
                             ->orderBy('created_at')
                             ->get();
                         $graph_juniper[] = array(
-                            'download' =>,
-                            'upload' => ,
+//                            'download' =>,
+//                            'upload' => ,
                             'realtime' => '/api/kemitraan/mrtg/graph_json_juniper/rt/'.$s->service_id.'/'.$j->vlan_id,
                             '2d' => '/api/kemitraan/mrtg/graph_json_juniper/2d/'.$s->service_id.'/'.$j->vlan_id,
                             '30d' => '/api/kemitraan/mrtg/graph_json_juniper/30d/'.$s->service_id.'/'.$j->vlan_id,
