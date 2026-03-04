@@ -64,6 +64,7 @@ class MrtgController extends Controller
                     $active_graph = 'mikrotik';
                 }
                 $HoursAgo = Carbon::now()->subMonth();
+                $service = ServiceDetail::query()->where('service_id', $s->service_id)->first();
                 $logs = GrafikMikrotik::query()
                     ->select([
                         'id',
@@ -72,8 +73,8 @@ class MrtgController extends Controller
                         'rx_bits_per_second',
                         'tx_bits_per_second'
                     ])
-                    ->where('id_mikrotik', $s->id_mikrotik)
-                    ->where('vlan_id', $s->vlan_id)
+                    ->where('id_mikrotik', $service->id_mikrotik)
+                    ->where('vlan_id', $service->vlan_id)
                     ->where('created_at', '>=', $HoursAgo)
                     ->orderBy('created_at', 'asc')
                     ->get();
