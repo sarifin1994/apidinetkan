@@ -62,8 +62,26 @@ class MrtgController extends Controller
                 if($s->service_detail->graph_type == 'mikrotik'){
                     $active_graph = 'mikrotik';
                 }
+                $HoursAgo = Carbon::now()->subMonth();
+                $logs = GrafikMikrotik::query()
+                    ->select([
+                        'id',
+                        'vlan_name',
+                        'created_at',
+                        'rx_bits_per_second',
+                        'tx_bits_per_second'
+                    ])
+                    ->where('id_mikrotik', $s->id_mikrotik)
+                    ->where('vlan_id', $s->vlan_id)
+                    ->where('created_at', '>=', $HoursAgo)
+                    ->orderBy('created_at', 'asc')
+                    ->get();
+                $download = $logs->sum('tx_bits_per_second') / 1000000;
+                $upload = $logs->sum('rx_bits_per_second') / 1000000;
                 $graph_mikrotik[] = array(
                     'link' => array(
+                        'download' => $download,
+                        'upload' => $upload,
                         'daily' => '/api/kemitraan/mrtg/graph_json_mikrotik_daily/'.$s->service_id,
                         'weekly' => '/api/kemitraan/mrtg/graph_json_mikrotik_weekly/'.$s->service_id,
                         'monthly' => '/api/kemitraan/mrtg/graph_json_mikrotik_monthly/'.$s->service_id,
