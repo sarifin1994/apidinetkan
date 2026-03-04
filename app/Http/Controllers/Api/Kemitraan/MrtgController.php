@@ -6,6 +6,8 @@ namespace App\Http\Controllers\Api\Kemitraan;
 
 use App\Http\Controllers\Controller;
 use App\Models\GrafikMikrotik;
+use App\Models\JuniperVlan;
+use App\Models\JuniperVlanTrafficLog;
 use App\Models\MappingUserLicense;
 use App\Models\ServiceDetail;
 use App\Models\UserDinetkan;
@@ -76,6 +78,20 @@ class MrtgController extends Controller
                         $graph_libre[] = array(
                             'data' => $l,
                             'link' => '/api/kemitraan/mrtg/get_ifname_image/'.$l->hostname.'/'.rawurlencode($l->ifName)
+                        );
+                    }
+                }
+
+
+                if($s->service_detail->graph_type == 'juniper'){
+                    $active_graph = 'juniper';
+                }
+                if($s->service_juniper){
+                    foreach ($s->service_juniper as $j){
+                        $graph_juniper[] = array(
+                            'realtime' => '/api/kemitraan/mrtg/graph_json_juniper/rt/'.$s->service_id.'/'.$j->vlan_id,
+                            '2d' => '/api/kemitraan/mrtg/graph_json_juniper/2d/'.$s->service_id.'/'.$j->vlan_id,
+                            '30d' => '/api/kemitraan/mrtg/graph_json_juniper/30d/'.$s->service_id.'/'.$j->vlan_id,
                         );
                     }
                 }
@@ -483,6 +499,100 @@ class MrtgController extends Controller
             'rx' => $rxData,
             'tx' => $txData,
             'delayBetweenPoints' => $delayBetweenPoints
+        ]);
+    }
+
+    public function get_graph_juniper($mode, $service, $vlan)
+    {
+        $vlan = JuniperVlan::where('vlan_id', $vlan)->first();
+        if($mode == 'rt'){
+            $start = now()->setTimezone('Asia/Jakarta')->subHour(); // 1 jam terakhir
+            $bucketMinutes = 5; // interval 5 menit
+        }
+        elseif($mode == '2d'){
+            $start = now()->setTimezone('Asia/Jakarta')->startOfHour()->subDays(2);
+            $bucketMinutes = 60;
+        }
+        elseif($mode == '30d'){
+            $start = now()->setTimezone('Asia/Jakarta')->startOfHour()->subDays(30);
+            $bucketMinutes = 1440;
+        }
+
+        $logs = JuniperVlanTrafficLog::where('juniper_vlan_id', $vlan->id)
+            ->where('created_at','>=',$start)
+            ->orderBy('created_at')
+            ->get();
+
+        $buckets = [];
+        if($mode == 'rt'){
+            for($i=0; $i<=60; $i+=5){
+
+                $slot = now()
+                    ->setTimezone('Asia/Jakarta')
+                    ->subMinutes(60-$i)
+                    ->floorMinutes(5)
+                    ->format('Y-m-d H:i');
+
+                $buckets[$slot] = [
+                    'in'=>[],
+                    'out'=>[],
+                    'in_bps'=>[],
+                    'out_bps'=>[],
+                    'in_pps'=>[],
+                    'out_pps'=>[]
+                ];
+            }
+        }
+
+        foreach ($logs as $log){
+
+//            $time = Carbon::parse($log->created_at);
+            $time = Carbon::parse($log->created_at)->setTimezone('Asia/Jakarta');
+
+            $bucket = floor($time->timestamp / ($bucketMinutes*60)) * ($bucketMinutes*60);
+//            $bucketTime = Carbon::createFromTimestamp($bucket)->format('Y-m-d H:i');
+            $bucketTime = Carbon::createFromTimestamp($bucket, 'Asia/Jakarta')
+                ->format('Y-m-d H:i');
+
+            if(!isset($buckets[$bucketTime])){
+                $buckets[$bucketTime] = [
+                    'in' => [],
+                    'out' => []
+                ];
+            }
+
+            $buckets[$bucketTime]['in'][] = $log->in_bytes;
+            $buckets[$bucketTime]['out'][] = $log->out_bytes;
+
+            $buckets[$bucketTime]['in_bps'][] = $log->in_bps;
+            $buckets[$bucketTime]['out_bps'][] = $log->out_bps;
+
+            $buckets[$bucketTime]['in_pps'][] = $log->in_pps;
+            $buckets[$bucketTime]['out_pps'][] = $log->out_pps;
+        }
+
+        $data = [];
+
+        foreach($buckets as $time => $val){
+            $data[] = [
+                'time' => $time,
+                'in_bytes' => count($val['in']) ? array_sum($val['in']) / count($val['in']) : 0,
+                'out_bytes' => count($val['out']) ? array_sum($val['out']) / count($val['out']) : 0,
+
+                'in_bps'=> count($val['in_bps']) ? array_sum($val['in_bps']) / count($val['in_bps']) : 0,
+                'out_bps'=> count($val['out_bps']) ? array_sum($val['out_bps']) / count($val['out_bps']) : 0,
+
+                'in_pps'=> count($val['in_pps']) ? array_sum($val['in_pps']) / count($val['in_pps']) : 0,
+                'out_pps'=> count($val['out_pps']) ? array_sum($val['out_pps']) / count($val['out_pps']) : 0,
+            ];
+        }
+
+        return response()->json([
+            'start' => $start,
+            'service_id' => $service,
+            'vlan_name' => $vlan->description,
+            'interval' => $bucketMinutes*60,
+            'data' => array_values($data)
         ]);
     }
 

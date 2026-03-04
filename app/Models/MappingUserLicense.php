@@ -74,4 +74,9 @@ class MappingUserLicense extends Model
     {
         return $this->belongsTo(LicenseDinetkan::class, 'license_id', 'id')->where('category_id',1);
     }
+
+    public function service_juniper()
+    {
+        return $this->hasMany(ServiceJuniper::class, 'service_id', 'service_id');
+    }
 }
