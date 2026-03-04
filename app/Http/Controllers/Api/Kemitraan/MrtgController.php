@@ -75,7 +75,10 @@ class MrtgController extends Controller
                     ])
                     ->where('id_mikrotik', $service->id_mikrotik)
                     ->where('vlan_id', $service->vlan_id)
-                    ->where('created_at', '>=', $HoursAgo)
+                    ->whereBetween('created_at', [
+                        Carbon::now()->subDays(30),
+                        Carbon::now()
+                    ])
                     ->orderBy('created_at', 'asc')
                     ->get();
                 Log::info($logs);
