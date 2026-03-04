@@ -119,8 +119,8 @@ class MrtgController extends Controller
                             ])
                             ->orderBy('created_at')
                             ->get();
-                        $download = $logs->sum('in_bps') / 1000000;
-                        $upload = $logs->sum('out_bps') / 1000000;
+                        $download = $logs->sum('out_bps') / 1000000;
+                        $upload = $logs->sum('in_bps') / 1000000;
 
                         $graph_juniper[] = array(
                             'vlan_id' => $vlan->vlan_id,
