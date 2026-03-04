@@ -35,6 +35,7 @@ class MrtgController extends Controller
                 $graph_mikrotik = [];
                 $graph_cacti = [];
                 $graph_libre = [];
+                $graph_juniper = [];
 
                 // cacti
                 if($s->service_detail->graph_type == 'cacti'){
@@ -103,7 +104,8 @@ class MrtgController extends Controller
                     'active_graph' => $active_graph,
                     'mikrotik' => $graph_mikrotik,
                     'cacti' => $graph_cacti,
-                    'libre' =>$graph_libre
+                    'libre' =>$graph_libre,
+                    'juniper' => $graph_juniper
                 );
             }
         }
