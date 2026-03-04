@@ -89,7 +89,16 @@ class MrtgController extends Controller
                 }
                 if($s->service_juniper){
                     foreach ($s->service_juniper as $j){
+                        $logs = JuniperVlanTrafficLog::where('juniper_vlan_id', $j->vlan->id)
+                            ->whereBetween('created_at', [
+                                Carbon::now()->subDays(30),
+                                Carbon::now()
+                            ])
+                            ->orderBy('created_at')
+                            ->get();
                         $graph_juniper[] = array(
+                            'download' =>,
+                            'upload' => ,
                             'realtime' => '/api/kemitraan/mrtg/graph_json_juniper/rt/'.$s->service_id.'/'.$j->vlan_id,
                             '2d' => '/api/kemitraan/mrtg/graph_json_juniper/2d/'.$s->service_id.'/'.$j->vlan_id,
                             '30d' => '/api/kemitraan/mrtg/graph_json_juniper/30d/'.$s->service_id.'/'.$j->vlan_id,
@@ -581,8 +590,8 @@ class MrtgController extends Controller
                 'in_bytes' => count($val['in']) ? array_sum($val['in']) / count($val['in']) : 0,
                 'out_bytes' => count($val['out']) ? array_sum($val['out']) / count($val['out']) : 0,
 
-                'in_bps'=> count($val['in_bps']) ? array_sum($val['in_bps']) / count($val['in_bps']) : 0,
-                'out_bps'=> count($val['out_bps']) ? array_sum($val['out_bps']) / count($val['out_bps']) : 0,
+                'in_bps'=> count($val['in_bps']) ? (array_sum($val['in_bps']) / count($val['in_bps'])) / 1000000 : 0,
+                'out_bps'=> count($val['out_bps']) ? (array_sum($val['out_bps']) / count($val['out_bps'])) / 1000000 : 0,
 
                 'in_pps'=> count($val['in_pps']) ? array_sum($val['in_pps']) / count($val['in_pps']) : 0,
                 'out_pps'=> count($val['out_pps']) ? array_sum($val['out_pps']) / count($val['out_pps']) : 0,
