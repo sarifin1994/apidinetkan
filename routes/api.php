@@ -76,7 +76,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
             Route::get('/get_ifname_image/{hostname}/{ifname}', [\App\Http\Controllers\Api\Kemitraan\MrtgController::class, 'get_ifname_image']);
 
-            Route::get('/graph_json_juniper/{mode}/{serviceid}/{vlainid}', [\App\Http\Controllers\Api\Kemitraan\MrtgController::class, 'get_ifname_image']);
+            Route::get('/graph_json_juniper/{mode}/{serviceid}/{vlainid}', [\App\Http\Controllers\Api\Kemitraan\MrtgController::class, 'get_graph_juniper']);
 
 
 
