@@ -80,7 +80,6 @@ class MrtgController extends Controller
                     ])
                     ->orderBy('created_at', 'asc')
                     ->get();
-                Log::info($logs);
                 $download = $logs->sum('tx_bits_per_second') / 1000000;
                 $upload = $logs->sum('rx_bits_per_second') / 1000000;
                 $graph_mikrotik[] = array(
@@ -124,6 +123,8 @@ class MrtgController extends Controller
                         $upload = $logs->sum('out_bps') / 1000000;
 
                         $graph_juniper[] = array(
+                            'vlan_id' => $vlan->vlan_id,
+                            'vlan_name' => $vlan->description,
                             'download' => round($download,0),
                             'upload' => round($upload,0),
                             'realtime' => '/api/kemitraan/mrtg/graph_json_juniper/rt/'.$s->service_id.'/'.$j->vlan_id,
