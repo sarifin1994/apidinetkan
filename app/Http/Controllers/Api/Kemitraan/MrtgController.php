@@ -63,7 +63,6 @@ class MrtgController extends Controller
                 if($s->service_detail->graph_type == 'mikrotik'){
                     $active_graph = 'mikrotik';
                 }
-                $HoursAgo = Carbon::now()->subMonth();
                 $service = ServiceDetail::query()->where('service_id', $s->service_id)->first();
                 $logs = GrafikMikrotik::query()
                     ->select([
