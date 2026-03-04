@@ -89,16 +89,27 @@ class MrtgController extends Controller
                 }
                 if($s->service_juniper){
                     foreach ($s->service_juniper as $j){
-                        $logs = JuniperVlanTrafficLog::where('juniper_vlan_id', $j->vlan->id)
+                        $vlan = JuniperVlan::query()->where('vlan_id', $j->vlan_id)->first();
+                        $logs = JuniperVlanTrafficLog::query()->select('in_bps','out_bps','juniper_vlan_id')->where('juniper_vlan_id', $vlan->id)
                             ->whereBetween('created_at', [
                                 Carbon::now()->subDays(30),
                                 Carbon::now()
                             ])
                             ->orderBy('created_at')
                             ->get();
+                        $download = 0;
+                        $upload = 0;
+                        $logs = $logs->map(function($l) use($download, $upload){
+                            $download_ = $download + $l->in_bps;
+                            $upload_ = $upload + $l->out_bps;
+                            return [
+                                'download' => $download_ / 1000000,
+                                'upload' => $upload_ / 1000000
+                            ];
+                        });
                         $graph_juniper[] = array(
-//                            'download' =>,
-//                            'upload' => ,
+                            'download' => $logs->download,
+                            'upload' => $logs->upload,
                             'realtime' => '/api/kemitraan/mrtg/graph_json_juniper/rt/'.$s->service_id.'/'.$j->vlan_id,
                             '2d' => '/api/kemitraan/mrtg/graph_json_juniper/2d/'.$s->service_id.'/'.$j->vlan_id,
                             '30d' => '/api/kemitraan/mrtg/graph_json_juniper/30d/'.$s->service_id.'/'.$j->vlan_id,
