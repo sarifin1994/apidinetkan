@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use App\Enums\ServiceStatusEnum;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -76,6 +77,7 @@ class MrtgController extends Controller
                     ->where('created_at', '>=', $HoursAgo)
                     ->orderBy('created_at', 'asc')
                     ->get();
+                Log::info($logs);
                 $download = $logs->sum('tx_bits_per_second') / 1000000;
                 $upload = $logs->sum('rx_bits_per_second') / 1000000;
                 $graph_mikrotik[] = array(
