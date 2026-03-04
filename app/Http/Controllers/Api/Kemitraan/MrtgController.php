@@ -108,8 +108,8 @@ class MrtgController extends Controller
                             ];
                         });
                         $graph_juniper[] = array(
-                            'download' => $logs->download,
-                            'upload' => $logs->upload,
+                            'download' => $logs['download'],
+                            'upload' => $logs['upload'],
                             'realtime' => '/api/kemitraan/mrtg/graph_json_juniper/rt/'.$s->service_id.'/'.$j->vlan_id,
                             '2d' => '/api/kemitraan/mrtg/graph_json_juniper/2d/'.$s->service_id.'/'.$j->vlan_id,
                             '30d' => '/api/kemitraan/mrtg/graph_json_juniper/30d/'.$s->service_id.'/'.$j->vlan_id,
