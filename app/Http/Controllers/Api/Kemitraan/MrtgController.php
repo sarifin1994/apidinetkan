@@ -97,19 +97,12 @@ class MrtgController extends Controller
                             ])
                             ->orderBy('created_at')
                             ->get();
-                        $download = 0;
-                        $upload = 0;
-                        $logs = $logs->map(function($l) use($download, $upload){
-                            $download_ = $download + $l->in_bps;
-                            $upload_ = $upload + $l->out_bps;
-                            return [
-                                'download' => $download_ / 1000000,
-                                'upload' => $upload_ / 1000000
-                            ];
-                        });
+                        $download = $logs->sum('in_bps') / 1000000;
+                        $upload = $logs->sum('out_bps') / 1000000;
+
                         $graph_juniper[] = array(
-                            'download' => $logs['download'],
-                            'upload' => $logs['upload'],
+                            'download' => round($download,0),
+                            'upload' => round($upload,0),
                             'realtime' => '/api/kemitraan/mrtg/graph_json_juniper/rt/'.$s->service_id.'/'.$j->vlan_id,
                             '2d' => '/api/kemitraan/mrtg/graph_json_juniper/2d/'.$s->service_id.'/'.$j->vlan_id,
                             '30d' => '/api/kemitraan/mrtg/graph_json_juniper/30d/'.$s->service_id.'/'.$j->vlan_id,
