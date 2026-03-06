@@ -108,6 +108,11 @@ Route::middleware('auth:sanctum')->group(function () {
             });
         });
 
+        // dashboard
+        Route::group(['as' => 'ping_monitor.', 'prefix' => 'ping_monitor'], function () {
+            Route::get('/',[\App\Http\Controllers\Api\Kemitraan\PingMonitorController::class, 'list_group']);
+        });
+
     });
 
     Route::group(['as' => 'ticket.', 'prefix' => 'ticket/'], function () {
