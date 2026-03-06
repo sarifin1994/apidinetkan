@@ -544,8 +544,9 @@ class MrtgController extends Controller
     public function get_graph_juniper($mode, $service, $vlan)
     {
         $vlan = JuniperVlan::where('vlan_id', $vlan)->first();
-        if($mode == 'rt'){
-            $start = now()->setTimezone('Asia/Jakarta')->subHour(); // 1 jam terakhir
+        if ($mode == 'rt') {
+            $end = now()->setTimezone('Asia/Jakarta')->subMinutes(15); // sekarang - 15 menit
+            $start = $end->copy()->subHour(); // 1 jam sebelum end
             $bucketMinutes = 5; // interval 5 menit
         }
         elseif($mode == '2d'){
@@ -563,14 +564,30 @@ class MrtgController extends Controller
             ->get();
 
         $buckets = [];
-        if($mode == 'rt'){
-            for($i=0; $i<=60; $i+=5){
+//        if($mode == 'rt'){
+//            for($i=0; $i<=60; $i+=5){
+//
+//                $slot = now()
+//                    ->setTimezone('Asia/Jakarta')
+//                    ->subMinutes(60-$i)
+//                    ->floorMinutes(5)
+//                    ->format('Y-m-d H:i');
+//
+//                $buckets[$slot] = [
+//                    'in'=>[],
+//                    'out'=>[],
+//                    'in_bps'=>[],
+//                    'out_bps'=>[],
+//                    'in_pps'=>[],
+//                    'out_pps'=>[]
+//                ];
+//            }
+//        }
 
-                $slot = now()
-                    ->setTimezone('Asia/Jakarta')
-                    ->subMinutes(60-$i)
-                    ->floorMinutes(5)
-                    ->format('Y-m-d H:i');
+        if ($mode == 'rt') {
+            for ($t = $start->copy(); $t <= $end; $t->addMinutes($bucketMinutes)) {
+
+                $slot = $t->format('Y-m-d H:i');
 
                 $buckets[$slot] = [
                     'in'=>[],
