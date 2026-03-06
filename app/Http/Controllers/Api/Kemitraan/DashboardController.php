@@ -10,6 +10,7 @@ use App\Models\Hotspot\HotspotUser;
 use App\Models\Invoice\Invoice;
 use App\Models\Keuangan\Transaksi;
 use App\Models\License;
+use App\Models\MappingUserLicense;
 use App\Models\Mikrotik\Nas;
 use App\Models\Pppoe\PppoeUser;
 use App\Models\Radius\RadiusSession;
@@ -18,6 +19,7 @@ use Illuminate\Http\Request;
 use RouterOS\Client;
 use RouterOS\Query;
 use Yajra\DataTables\Facades\DataTables;
+use App\Enums\ServiceStatusEnum;
 
 class DashboardController extends Controller
 {
@@ -125,5 +127,29 @@ class DashboardController extends Controller
             })
             ->rawColumns(['ping'])
             ->toJson();
+    }
+
+
+    public function informasi_layanan(Request $request){
+        $services = MappingUserLicense::query()
+            ->where('dinetkan_user_id', $request->user()->dinetkan_user_id)
+            ->where('status', ServiceStatusEnum::ACTIVE->value)
+            ->with('service')
+            ->with('service_detail')
+            ->with('service_libre')
+            ->orderBy('created_at', 'asc')
+            ->get();
+
+        $services = $services->map(function($r){
+            return [
+                'service_id' => $r->service_id,
+                'status' => ServiceStatusEnum::ACTIVE->label(),
+               'bandwith' => $r->Service->capacity,
+               'expired' => $r->due_date,
+               'ip_public' => $r->service_detail->ip_prefix
+           ];
+        });
+
+        return response()->json($services);
     }
 }

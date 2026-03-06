@@ -34,6 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
         // dashboard
         Route::group(['as' => 'dashboard.', 'prefix' => 'dashboard'], function () {
             Route::get('/',[\App\Http\Controllers\Api\Kemitraan\DashboardController::class, 'index']);
+            Route::get('/informasi_layanan',[\App\Http\Controllers\Api\Kemitraan\DashboardController::class, 'informasi_layanan']);
         });
         // account
         Route::group(['as' => 'account.', 'prefix' => 'account'], function () {
@@ -108,7 +109,7 @@ Route::middleware('auth:sanctum')->group(function () {
             });
         });
 
-        // dashboard
+        // pingmonitor
         Route::group(['as' => 'ping_monitor.', 'prefix' => 'ping_monitor'], function () {
             Route::get('/',[\App\Http\Controllers\Api\Kemitraan\PingMonitorController::class, 'list_group']);
         });
