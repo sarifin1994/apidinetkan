@@ -28,7 +28,9 @@ class MrtgController extends Controller
             ->where('status', ServiceStatusEnum::ACTIVE->value)
             ->with('service')
             ->with('service_detail')
-            ->with('service_libre')->get();
+            ->with('service_libre')
+            ->orderBy('created_at', 'asc')
+            ->get();
         $new_services = [];
         if($services){
             foreach ($services as $s){
