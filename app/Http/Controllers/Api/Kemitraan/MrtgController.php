@@ -127,6 +127,7 @@ class MrtgController extends Controller
                         $graph_juniper[] = array(
                             'vlan_id' => $vlan->vlan_id,
                             'vlan_name' => $vlan->description,
+                            'graph_name' => $j->juniper_graph_name,
                             'download' => round($download,0),
                             'upload' => round($upload,0),
                             'realtime' => '/api/kemitraan/mrtg/graph_json_juniper/rt/'.$s->service_id.'/'.$j->vlan_id,
