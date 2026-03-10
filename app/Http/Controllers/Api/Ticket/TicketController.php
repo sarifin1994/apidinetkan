@@ -320,11 +320,12 @@ class TicketController extends Controller
             $gangguan = MasterJenisGangguan::find($request->jenis_gangguan);
             $metro = 0;
             if(isset($serviceDetail->metro_id)){
-                $metro    = MasterMetro::query()->where('id',$serviceDetail->metro_id)->first();
+                $metro = MasterMetro::query()->where('id',$serviceDetail->metro_id)->first();
             }
             if($metro == null){
                 return response()->json([
-                    'success' => "Silahkan hubungi admin ada data belum lengkap"
+                    'success'=>false,
+                    'message'=>'Silahkan hubungi admin data metro kosong',
                 ], 500);
             }
             $mpwa    = Mpwa::where('shortname', "dinetkan")->first();
