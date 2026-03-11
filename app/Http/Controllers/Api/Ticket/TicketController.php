@@ -586,7 +586,8 @@ Terimakasih";
             'metro' => $metro->name,
             'lampiran'=>$tiket->img_path?"$radiusUrl/api/tickets/show_file/$tiket->id":"",
             'subject'=>$tiket->subject,
-            'keluhan'=>$tiket->note
+            'keluhan'=>$tiket->note,
+            'created_at'=>$tiket->created_at
         ];
         $evidences = $evidencesraw->map(function($e) use($radiusUrl){
             $photos = null;
